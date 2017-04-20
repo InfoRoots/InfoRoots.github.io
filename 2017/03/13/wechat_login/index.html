@@ -6,18 +6,20 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <link rel="dns-prefetch" href="https://inforoots.github.io">
-  <title>微信WIFI与深信服开发详解 | Hexo</title>
+  <title>微信登陆开发详解（手机登陆和扫码登陆） | Hexo</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="本文详细描述了小编在开发微信WIFI与深信服之间连接时的过程，不好之处，还请多多指点">
+  <meta name="description" content="本文详细描述了小编在开发微信登陆时的过程，包含手机登陆和扫码登陆。有不好之处，还请多多指点">
 <meta property="og:type" content="article">
-<meta property="og:title" content="微信WIFI与深信服开发详解">
-<meta property="og:url" content="https://inforoots.github.io/2017/03/10/wechat_dev/index.html">
+<meta property="og:title" content="微信登陆开发详解（手机登陆和扫码登陆）">
+<meta property="og:url" content="https://inforoots.github.io/2017/03/13/wechat_login/index.html">
 <meta property="og:site_name" content="Hexo">
-<meta property="og:description" content="本文详细描述了小编在开发微信WIFI与深信服之间连接时的过程，不好之处，还请多多指点">
-<meta property="og:updated_time" content="2017-03-13T00:51:11.152Z">
+<meta property="og:description" content="本文详细描述了小编在开发微信登陆时的过程，包含手机登陆和扫码登陆。有不好之处，还请多多指点">
+<meta property="og:image" content="https://inforoots.github.io/img/access_token.png">
+<meta property="og:updated_time" content="2017-04-20T03:07:05.092Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="微信WIFI与深信服开发详解">
-<meta name="twitter:description" content="本文详细描述了小编在开发微信WIFI与深信服之间连接时的过程，不好之处，还请多多指点">
+<meta name="twitter:title" content="微信登陆开发详解（手机登陆和扫码登陆）">
+<meta name="twitter:description" content="本文详细描述了小编在开发微信登陆时的过程，包含手机登陆和扫码登陆。有不好之处，还请多多指点">
+<meta name="twitter:image" content="https://inforoots.github.io/img/access_token.png">
   
     <link rel="alternative" href="/atom.xml" title="Hexo" type="application/atom+xml">
   
@@ -139,28 +141,33 @@
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            <article id="post-wechat_dev" class="article article-type-post " itemscope itemprop="blogPost">
+            <article id="post-wechat_login" class="article article-type-post " itemscope itemprop="blogPost">
   <div class="article-inner">
     
       <header class="article-header">
         
   
     <h1 class="article-title" itemprop="name">
-      微信WIFI与深信服开发详解
+      微信登陆开发详解（手机登陆和扫码登陆）
     </h1>
   
 
         
-        <a href="/2017/03/10/wechat_dev/" class="archive-article-date">
-  	<time datetime="2017-03-10T03:08:39.506Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-03-10</time>
+        <a href="/2017/03/13/wechat_login/" class="archive-article-date">
+  	<time datetime="2017-03-13T00:50:15.251Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-03-13</time>
 </a>
         
       </header>
     
     <div class="article-entry" itemprop="articleBody">
       
-        <p>本文详细描述了小编在开发微信WIFI与深信服之间连接时的过程，不好之处，还请多多指点<br><a id="more"></a></p>
-<p>如果这篇文章对你有帮助，请帮作者点个Star,<a href="https://github.com/InfoRoots/InfoRoots.github.io" target="_blank" rel="external">GitHub地址</a></p>
+        <p>本文详细描述了小编在开发微信登陆时的过程，包含手机登陆和扫码登陆。有不好之处，还请多多指点<br><a id="more"></a></p>
+<h2 id="第一步：根据官方手册先做准备工作"><a href="#第一步：根据官方手册先做准备工作" class="headerlink" title="第一步：根据官方手册先做准备工作"></a>第一步：根据官方手册先做准备工作</h2><pre><code>在进行微信OAuth2.在进行微信OAuth2.0授权登录接入之前，在微信开放平台注册开发者帐号，并拥有一个已审核通过的网站应用，并获得相应的AppID和AppSecret，申请微信登录且通过审核后，可开始接入流程。
+</code></pre><p>微信开放平台链接：<a href="https://open.weixin.qq.com/" target="_blank" rel="external">https://open.weixin.qq.com/</a></p>
+<h2 id="第二步：开发整体流程图"><a href="#第二步：开发整体流程图" class="headerlink" title="第二步：开发整体流程图"></a>第二步：开发整体流程图</h2><p>通过下图我们可以初步了解,要获取用户信息就必须获取access_token,而想获取access_token就必须使用code、appid、appsecret三个参数去获取，往下继续了解这三个参数的获取方式</p>
+<p><img src="/img/access_token.png" alt=""></p>
+<h3 id="三个参数获取方式"><a href="#三个参数获取方式" class="headerlink" title="三个参数获取方式"></a>三个参数获取方式</h3> <figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">AppID和AppSecret：第一步已经说明获取方法</div><div class="line"></div><div class="line">code是通过链接获取：https://open.weixin.qq.com/connect/qrconnect?appid=APPID&amp;redirect_uri=REDIRECT_URI&amp;response_type=code&amp;scope=SCOPE&amp;state=STATE<span class="comment">#wechat_redirect</span></div><div class="line"></div><div class="line">通过code获取access_token: https://api.weixin.qq.com/sns/oauth2/access_token?appid=APPID&amp;secret=SECRET&amp;code=CODE&amp;grant_type=authorization_code</div></pre></td></tr></table></figure>
+<h2 id="第三步：代码开发（手机端）"><a href="#第三步：代码开发（手机端）" class="headerlink" title="第三步：代码开发（手机端）"></a>第三步：代码开发（手机端）</h2><p>如果这篇文章对你有帮助，请帮作者点个Star,<a href="https://github.com/InfoRoots/InfoRoots.github.io" target="_blank" rel="external">GitHub地址</a></p>
 
       
 
@@ -213,15 +220,20 @@
   
 <nav id="article-nav">
   
-    <a href="/2017/03/10/hexo-GitHubPage/" id="article-nav-newer" class="article-nav-link-wrap">
+    <a href="/2017/03/13/wechat_Wifi/" id="article-nav-newer" class="article-nav-link-wrap">
       <i class="icon-circle-left"></i>
       <div class="article-nav-title">
         
-          Hexo-GitHubPage配置详解
+          微信WIFI与深信服开发详解
         
       </div>
     </a>
   
+  
+    <a href="/2017/03/10/hexo-GitHubPage/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">Hexo-GitHubPage配置详解</div>
+      <i class="icon-circle-right"></i>
+    </a>
   
 </nav>
 
@@ -233,7 +245,7 @@
   
   <div class="duoshuo">
 	<!-- 多说评论框 start -->
-	<div class="ds-thread" data-thread-key="wechat_dev" data-title="微信WIFI与深信服开发详解" data-url="https://inforoots.github.io/2017/03/10/wechat_dev/"></div>
+	<div class="ds-thread" data-thread-key="wechat_login" data-title="微信登陆开发详解（手机登陆和扫码登陆）" data-url="https://inforoots.github.io/2017/03/13/wechat_login/"></div>
 	<!-- 多说评论框 end -->
 	<!-- 多说公共JS代码 start (一个网页只需插入一次) -->
 	<script type="text/javascript">
