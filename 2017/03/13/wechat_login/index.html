@@ -8,19 +8,19 @@
   <link rel="dns-prefetch" href="https://inforoots.github.io">
   <title>微信登陆开发详解（手机登陆和扫码登陆） | Hexo</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="本文详细描述了小编在开发微信登陆时的过程，包含手机登陆和扫码登陆。有不好之处，还请多多指点">
+  <meta name="description" content="本文详细描述了小编在开发微信登陆时的过程，包含手机登陆和扫码登陆。有不好之处，还请多多指点，欢迎关注我的微信公众号：程序伯乐。">
 <meta property="og:type" content="article">
 <meta property="og:title" content="微信登陆开发详解（手机登陆和扫码登陆）">
 <meta property="og:url" content="https://inforoots.github.io/2017/03/13/wechat_login/index.html">
 <meta property="og:site_name" content="Hexo">
-<meta property="og:description" content="本文详细描述了小编在开发微信登陆时的过程，包含手机登陆和扫码登陆。有不好之处，还请多多指点">
+<meta property="og:description" content="本文详细描述了小编在开发微信登陆时的过程，包含手机登陆和扫码登陆。有不好之处，还请多多指点，欢迎关注我的微信公众号：程序伯乐。">
 <meta property="og:image" content="https://inforoots.github.io/img/access_token.png">
 <meta property="og:image" content="https://inforoots.github.io/img/scape.png">
 <meta property="og:image" content="https://inforoots.github.io/img/pc_scape.png">
-<meta property="og:updated_time" content="2017-04-21T00:52:08.336Z">
+<meta property="og:updated_time" content="2017-04-21T00:55:23.540Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="微信登陆开发详解（手机登陆和扫码登陆）">
-<meta name="twitter:description" content="本文详细描述了小编在开发微信登陆时的过程，包含手机登陆和扫码登陆。有不好之处，还请多多指点">
+<meta name="twitter:description" content="本文详细描述了小编在开发微信登陆时的过程，包含手机登陆和扫码登陆。有不好之处，还请多多指点，欢迎关注我的微信公众号：程序伯乐。">
 <meta name="twitter:image" content="https://inforoots.github.io/img/access_token.png">
   
     <link rel="alternative" href="/atom.xml" title="Hexo" type="application/atom+xml">
@@ -163,7 +163,7 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <p>本文详细描述了小编在开发微信登陆时的过程，包含手机登陆和扫码登陆。有不好之处，还请多多指点<br><a id="more"></a></p>
+        <p>本文详细描述了小编在开发微信登陆时的过程，包含手机登陆和扫码登陆。有不好之处，还请多多指点，欢迎关注我的微信公众号：程序伯乐。<br><a id="more"></a></p>
 <h2 id="第一步：根据官方手册先做准备工作"><a href="#第一步：根据官方手册先做准备工作" class="headerlink" title="第一步：根据官方手册先做准备工作"></a>第一步：根据官方手册先做准备工作</h2><pre><code>在进行微信OAuth2.在进行微信OAuth2.0授权登录接入之前，在微信开放平台注册开发者帐号，并拥有一个已审核通过的网站应用，并获得相应的AppID和AppSecret，申请微信登录且通过审核后，可开始接入流程。
 </code></pre><p>微信开放平台链接：<a href="https://open.weixin.qq.com/" target="_blank" rel="external">https://open.weixin.qq.com/</a><br>微信登陆开发文档：<a href="https://open.weixin.qq.com/cgi-bin/showdocument?action=dir_list&amp;t=resource/res_list&amp;verify=1&amp;lang=zh_CN&amp;token=8b60fff6eb66c3aea970be1a5c8de9cc9c9a874e" target="_blank" rel="external">https://open.weixin.qq.com/cgi-bin/showdocument?action=dir_list&amp;t=resource/res_list&amp;verify=1&amp;lang=zh_CN&amp;token=8b60fff6eb66c3aea970be1a5c8de9cc9c9a874e</a></p>
 <h2 id="第二步：开发整体流程图"><a href="#第二步：开发整体流程图" class="headerlink" title="第二步：开发整体流程图"></a>第二步：开发整体流程图</h2><p>通过下图我们可以初步了解,要获取用户信息就必须获取access_token,而想获取access_token就必须使用code、appid、appsecret三个参数去获取，往下继续了解这三个参数的获取方式</p>
@@ -324,18 +324,18 @@
   
 <nav id="article-nav">
   
-    <a href="/2017/03/23/URL_Rewrite/" id="article-nav-newer" class="article-nav-link-wrap">
+    <a href="/2017/03/13/wechat_Wifi/" id="article-nav-newer" class="article-nav-link-wrap">
       <i class="icon-circle-left"></i>
       <div class="article-nav-title">
         
-          Thinkphp5实现URL重定向
+          微信WIFI与深信服开发详解
         
       </div>
     </a>
   
   
-    <a href="/2017/03/13/wechat_Wifi/" id="article-nav-older" class="article-nav-link-wrap">
-      <div class="article-nav-title">微信WIFI与深信服开发详解</div>
+    <a href="/2017/03/10/hexo-GitHubPage/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">Hexo-GitHubPage配置详解</div>
       <i class="icon-circle-right"></i>
     </a>
   
