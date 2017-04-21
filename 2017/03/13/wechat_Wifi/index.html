@@ -6,21 +6,18 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <link rel="dns-prefetch" href="https://inforoots.github.io">
-  <title>Hexo-GitHubPage配置详解 | Hexo</title>
+  <title>微信WIFI与深信服开发详解 | Hexo</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="本文详细描述了如何在Github上，使用Hexo部署博客">
+  <meta name="description" content="本文详细描述了小编在开发微信WIFI与深信服之间连接时的过程，不好之处，还请多多指点">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Hexo-GitHubPage配置详解">
-<meta property="og:url" content="https://inforoots.github.io/2017/03/10/hexo-GitHubPage/index.html">
+<meta property="og:title" content="微信WIFI与深信服开发详解">
+<meta property="og:url" content="https://inforoots.github.io/2017/03/13/wechat_Wifi/index.html">
 <meta property="og:site_name" content="Hexo">
-<meta property="og:description" content="本文详细描述了如何在Github上，使用Hexo部署博客">
-<meta property="og:image" content="https://inforoots.github.io/img/page.png">
-<meta property="og:image" content="https://inforoots.github.io/img/deploy.png">
-<meta property="og:updated_time" content="2017-04-21T00:52:17.524Z">
+<meta property="og:description" content="本文详细描述了小编在开发微信WIFI与深信服之间连接时的过程，不好之处，还请多多指点">
+<meta property="og:updated_time" content="2017-03-13T00:51:11.152Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Hexo-GitHubPage配置详解">
-<meta name="twitter:description" content="本文详细描述了如何在Github上，使用Hexo部署博客">
-<meta name="twitter:image" content="https://inforoots.github.io/img/page.png">
+<meta name="twitter:title" content="微信WIFI与深信服开发详解">
+<meta name="twitter:description" content="本文详细描述了小编在开发微信WIFI与深信服之间连接时的过程，不好之处，还请多多指点">
   
     <link rel="alternative" href="/atom.xml" title="Hexo" type="application/atom+xml">
   
@@ -142,45 +139,27 @@
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            <article id="post-hexo-GitHubPage" class="article article-type-post " itemscope itemprop="blogPost">
+            <article id="post-wechat_Wifi" class="article article-type-post " itemscope itemprop="blogPost">
   <div class="article-inner">
     
       <header class="article-header">
         
   
     <h1 class="article-title" itemprop="name">
-      Hexo-GitHubPage配置详解
+      微信WIFI与深信服开发详解
     </h1>
   
 
         
-        <a href="/2017/03/10/hexo-GitHubPage/" class="archive-article-date">
-  	<time datetime="2017-03-10T03:34:21.730Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-03-10</time>
+        <a href="/2017/03/13/wechat_Wifi/" class="archive-article-date">
+  	<time datetime="2017-03-13T00:50:15.251Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-03-13</time>
 </a>
         
       </header>
     
     <div class="article-entry" itemprop="articleBody">
       
-        <p>本文详细描述了如何在Github上，使用Hexo部署博客<br><a id="more"></a></p>
-<h2 id="Hexo的安装"><a href="#Hexo的安装" class="headerlink" title="Hexo的安装"></a>Hexo的安装</h2><h3 id="申请GitHub账号"><a href="#申请GitHub账号" class="headerlink" title="申请GitHub账号"></a>申请GitHub账号</h3><p>注册地址：<a href="https://github.com/join?source=header-home" target="_blank" rel="external">账号注册</a></p>
-<p>创建博客仓库</p>
-<p>注意，仓库名应该为：用户名.github.io。比如，我的仓库名是：InfoRoots.github.io。</p>
-<h3 id="安装Git"><a href="#安装Git" class="headerlink" title="安装Git"></a>安装Git</h3><p>下载地址：<a href="https://git-scm.com/downloads/" target="_blank" rel="external">git</a></p>
-<p>配置SSH个人推荐教程:<a href="https://zhuanlan.zhihu.com/p/21302347" target="_blank" rel="external">从0开始学习 GitHub 系列</a></p>
-<h3 id="安装Nginx"><a href="#安装Nginx" class="headerlink" title="安装Nginx"></a>安装Nginx</h3><p>下载地址: <a href="https://nodejs.org/en/" target="_blank" rel="external">Nginx</a>，执行安装，在cmd使用 node -v的命令来测试NodeJS是否安装成功 </p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">node -v</div></pre></td></tr></table></figure>
-<p>成功会显示node的版本号</p>
-<h3 id="安装Hexo"><a href="#安装Hexo" class="headerlink" title="安装Hexo"></a>安装Hexo</h3><p>在本地新建一个Blog文件夹，文件右键，选择Git Bash Here。 输入指令安装hexo</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ npm install -g hexo-cli</div></pre></td></tr></table></figure>
-<h3 id="初始化Hexo"><a href="#初始化Hexo" class="headerlink" title="初始化Hexo"></a>初始化Hexo</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ hexo init hexo-cli</div></pre></td></tr></table></figure>
-<p>初始化成功会显示Start blogging with Hexo!</p>
-<h3 id="进入hexo-cli文件目录-安装依赖文件以及部署形成文件"><a href="#进入hexo-cli文件目录-安装依赖文件以及部署形成文件" class="headerlink" title="进入hexo-cli文件目录,安装依赖文件以及部署形成文件"></a>进入hexo-cli文件目录,安装依赖文件以及部署形成文件</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">$ <span class="built_in">cd</span> hexo-cli</div><div class="line">$ npm install</div><div class="line">$ hexo generate</div></pre></td></tr></table></figure>
-<h3 id="初探Hexo"><a href="#初探Hexo" class="headerlink" title="初探Hexo"></a>初探Hexo</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ hexo server</div></pre></td></tr></table></figure>
-<p>默认的地址是：<a href="http://localhost:4000/" target="_blank" rel="external">http://localhost:4000/</a></p>
-<h2 id="将本地Hexo项目托管到Github"><a href="#将本地Hexo项目托管到Github" class="headerlink" title="将本地Hexo项目托管到Github"></a>将本地Hexo项目托管到Github</h2><h3 id="配置GitHubPage"><a href="#配置GitHubPage" class="headerlink" title="配置GitHubPage"></a>配置GitHubPage</h3><p>进入仓库，点击右边的”Setting”菜单进入设置,下拉选择”master branch”<br><img src="/img/page.png" alt=""></p>
-<h3 id="打开修改hexo-cli目录下配置文件-config-yml。修改deploy"><a href="#打开修改hexo-cli目录下配置文件-config-yml。修改deploy" class="headerlink" title="打开修改hexo_cli目录下配置文件_config.yml。修改deploy"></a>打开修改hexo_cli目录下配置文件_config.yml。修改deploy</h3><p><img src="/img/deploy.png" alt=""></p>
-<h3 id="部署你本地的主题到github上，使用下面命令"><a href="#部署你本地的主题到github上，使用下面命令" class="headerlink" title="部署你本地的主题到github上，使用下面命令"></a>部署你本地的主题到github上，使用下面命令</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">$ hexo clean</div><div class="line">$ hexo g</div><div class="line">$ hexo d</div></pre></td></tr></table></figure>
+        <p>本文详细描述了小编在开发微信WIFI与深信服之间连接时的过程，不好之处，还请多多指点<br><a id="more"></a></p>
 <p>如果这篇文章对你有帮助，请帮作者点个Star,<a href="https://github.com/InfoRoots/InfoRoots.github.io" target="_blank" rel="external">GitHub地址</a></p>
 
       
@@ -234,15 +213,20 @@
   
 <nav id="article-nav">
   
-    <a href="/2017/03/13/wechat_Wifi/" id="article-nav-newer" class="article-nav-link-wrap">
+    <a href="/2017/03/13/wechat_login/" id="article-nav-newer" class="article-nav-link-wrap">
       <i class="icon-circle-left"></i>
       <div class="article-nav-title">
         
-          微信WIFI与深信服开发详解
+          微信登陆开发详解（手机登陆和扫码登陆）
         
       </div>
     </a>
   
+  
+    <a href="/2017/03/10/hexo-GitHubPage/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">Hexo-GitHubPage配置详解</div>
+      <i class="icon-circle-right"></i>
+    </a>
   
 </nav>
 
@@ -254,7 +238,7 @@
   
   <div class="duoshuo">
 	<!-- 多说评论框 start -->
-	<div class="ds-thread" data-thread-key="hexo-GitHubPage" data-title="Hexo-GitHubPage配置详解" data-url="https://inforoots.github.io/2017/03/10/hexo-GitHubPage/"></div>
+	<div class="ds-thread" data-thread-key="wechat_Wifi" data-title="微信WIFI与深信服开发详解" data-url="https://inforoots.github.io/2017/03/13/wechat_Wifi/"></div>
 	<!-- 多说评论框 end -->
 	<!-- 多说公共JS代码 start (一个网页只需插入一次) -->
 	<script type="text/javascript">

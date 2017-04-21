@@ -8,20 +8,20 @@
   <link rel="dns-prefetch" href="https://inforoots.github.io">
   <title>Thinkphp5实现URL重定向 | Hexo</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="本文详细描述了小编给Thinkphp5配置URL重定向时的过程，不好之处，还请多多指点，本文以IIS为例, 欢迎关注我的微信公众号：程序伯乐">
+  <meta name="description" content="本文详细描述了小编给Thinkphp5配置URL重定向时的过程，不好之处，还请多多指点，本文以IIS为例">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Thinkphp5实现URL重定向">
 <meta property="og:url" content="https://inforoots.github.io/2017/03/23/URL_Rewrite/index.html">
 <meta property="og:site_name" content="Hexo">
-<meta property="og:description" content="本文详细描述了小编给Thinkphp5配置URL重定向时的过程，不好之处，还请多多指点，本文以IIS为例, 欢迎关注我的微信公众号：程序伯乐">
+<meta property="og:description" content="本文详细描述了小编给Thinkphp5配置URL重定向时的过程，不好之处，还请多多指点，本文以IIS为例">
 <meta property="og:image" content="https://inforoots.github.io/img/rewrite.png">
 <meta property="og:image" content="https://inforoots.github.io/img/input.png">
 <meta property="og:image" content="https://inforoots.github.io/img/input2.png">
 <meta property="og:image" content="https://inforoots.github.io/img/url.png">
-<meta property="og:updated_time" content="2017-04-21T00:50:11.185Z">
+<meta property="og:updated_time" content="2017-04-21T00:52:20.909Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Thinkphp5实现URL重定向">
-<meta name="twitter:description" content="本文详细描述了小编给Thinkphp5配置URL重定向时的过程，不好之处，还请多多指点，本文以IIS为例, 欢迎关注我的微信公众号：程序伯乐">
+<meta name="twitter:description" content="本文详细描述了小编给Thinkphp5配置URL重定向时的过程，不好之处，还请多多指点，本文以IIS为例">
 <meta name="twitter:image" content="https://inforoots.github.io/img/rewrite.png">
   
     <link rel="alternative" href="/atom.xml" title="Hexo" type="application/atom+xml">
@@ -164,7 +164,7 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <p>本文详细描述了小编给Thinkphp5配置URL重定向时的过程，不好之处，还请多多指点，本文以IIS为例, 欢迎关注我的微信公众号：程序伯乐<br><a id="more"></a></p>
+        <p>本文详细描述了小编给Thinkphp5配置URL重定向时的过程，不好之处，还请多多指点，本文以IIS为例<br><a id="more"></a></p>
 <h2 id="创建-htaccess-将下面代码写入文件内"><a href="#创建-htaccess-将下面代码写入文件内" class="headerlink" title="创建.htaccess,将下面代码写入文件内"></a>创建.htaccess,将下面代码写入文件内</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line">&lt;IfModule mod_rewrite.c&gt;</div><div class="line">  Options +FollowSymlinks -Multiviews</div><div class="line">  RewriteEngine On</div><div class="line"></div><div class="line">  RewriteCond %&#123;REQUEST_FILENAME&#125; !<span class="_">-d</span></div><div class="line">  RewriteCond %&#123;REQUEST_FILENAME&#125; !<span class="_">-f</span></div><div class="line">  RewriteRule ^(.*)$ index.php/<span class="variable">$1</span> [QSA,PT,L]</div><div class="line">&lt;/IfModule&gt;</div></pre></td></tr></table></figure>
 <h2 id="安装URL重写组件"><a href="#安装URL重写组件" class="headerlink" title="安装URL重写组件"></a>安装URL重写组件</h2><h4 id="先安装URL组件，小编已经把组件64位和32位发布到CSDN"><a href="#先安装URL组件，小编已经把组件64位和32位发布到CSDN" class="headerlink" title="先安装URL组件，小编已经把组件64位和32位发布到CSDN"></a>先安装URL组件，小编已经把组件64位和32位发布到CSDN</h4><p><a href="http://download.csdn.net/detail/zwj941107/9790754" target="_blank" rel="external">http://download.csdn.net/detail/zwj941107/9790754</a></p>
 <h4 id="如果觉得版本太旧下面是官网链接，不过不翻墙会访问会比较慢"><a href="#如果觉得版本太旧下面是官网链接，不过不翻墙会访问会比较慢" class="headerlink" title="如果觉得版本太旧下面是官网链接，不过不翻墙会访问会比较慢"></a>如果觉得版本太旧下面是官网链接，不过不翻墙会访问会比较慢</h4><p><a href="https://www.iis.net/downloads/microsoft/url-rewrite#additionalDownloads" target="_blank" rel="external">https://www.iis.net/downloads/microsoft/url-rewrite#additionalDownloads</a></p>
