@@ -8,16 +8,16 @@
   <link rel="dns-prefetch" href="https://inforoots.github.io">
   <title>工作中常用JavaScript代码总结 | Hexo</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="本文根据小编在项目中开发的使用总结，不好之处，还请多多指点">
+  <meta name="description" content="本文根据小编在项目中开发的使用总结，不好之处，还请多多指点, 欢迎关注我的微信公众号：程序伯乐">
 <meta property="og:type" content="article">
 <meta property="og:title" content="工作中常用JavaScript代码总结">
 <meta property="og:url" content="https://inforoots.github.io/2017/04/20/javascript/index.html">
 <meta property="og:site_name" content="Hexo">
-<meta property="og:description" content="本文根据小编在项目中开发的使用总结，不好之处，还请多多指点">
-<meta property="og:updated_time" content="2017-04-20T01:01:36.666Z">
+<meta property="og:description" content="本文根据小编在项目中开发的使用总结，不好之处，还请多多指点, 欢迎关注我的微信公众号：程序伯乐">
+<meta property="og:updated_time" content="2017-04-21T00:49:53.432Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="工作中常用JavaScript代码总结">
-<meta name="twitter:description" content="本文根据小编在项目中开发的使用总结，不好之处，还请多多指点">
+<meta name="twitter:description" content="本文根据小编在项目中开发的使用总结，不好之处，还请多多指点, 欢迎关注我的微信公众号：程序伯乐">
   
     <link rel="alternative" href="/atom.xml" title="Hexo" type="application/atom+xml">
   
@@ -159,7 +159,7 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <p>本文根据小编在项目中开发的使用总结，不好之处，还请多多指点<br><a id="more"></a></p>
+        <p>本文根据小编在项目中开发的使用总结，不好之处，还请多多指点, 欢迎关注我的微信公众号：程序伯乐<br><a id="more"></a></p>
 <h3 id="手机类型判断"><a href="#手机类型判断" class="headerlink" title="手机类型判断"></a>手机类型判断</h3> <figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">var BrowserInfo = &#123;</div><div class="line">    userAgent: navigator.userAgent.toLowerCase()</div><div class="line">    isAndroid: Boolean(navigator.userAgent.match(/android/ig)),</div><div class="line">    isIphone: Boolean(navigator.userAgent.match(/iphone|ipod/ig)),</div><div class="line">    isIpad: Boolean(navigator.userAgent.match(/ipad/ig)),</div><div class="line">    isWeixin: Boolean(navigator.userAgent.match(/MicroMessenger/ig)),</div><div class="line">&#125;</div></pre></td></tr></table></figure>
 <h3 id="返回字符串长度，汉子计数为2"><a href="#返回字符串长度，汉子计数为2" class="headerlink" title="返回字符串长度，汉子计数为2"></a>返回字符串长度，汉子计数为2</h3> <figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">function</span> strLength(str) &#123; </div><div class="line">            var a = 0;</div><div class="line">            <span class="keyword">for</span> (var i = 0; i &lt; str.length; i++) &#123;</div><div class="line">                <span class="keyword">if</span> (str.charCodeAt(i) &gt; 255)</div><div class="line">                    a += 2;//按照预期计数增加2</div><div class="line">                <span class="keyword">else</span></div><div class="line">                    a++;</div><div class="line">            &#125;</div><div class="line">            <span class="built_in">return</span> a;</div><div class="line">        &#125;</div></pre></td></tr></table></figure>
 <h3 id="获取url中的参数"><a href="#获取url中的参数" class="headerlink" title="获取url中的参数"></a>获取url中的参数</h3> <figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">function</span> GetQueryStringRegExp(name,url) &#123;</div><div class="line">    var reg = new RegExp(<span class="string">"(^|\\?|&amp;)"</span> + name + <span class="string">"=([^&amp;]*)(\\s|&amp;|$)"</span>, <span class="string">"i"</span>);</div><div class="line">    <span class="keyword">if</span> (reg.test(url)) <span class="built_in">return</span> decodeURIComponent(RegExp.<span class="variable">$2</span>.replace(/\+/g, <span class="string">" "</span>)); <span class="built_in">return</span> <span class="string">""</span>;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
