@@ -6,22 +6,22 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <link rel="dns-prefetch" href="https://inforoots.github.io">
-  <title>composer在window的安装以及一些错误的解决方法 | Hexo</title>
+  <title>Centos7安装Apache、php、Nginx、Mysql | Hexo</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
   <meta name="description" content="本文根据小编在项目中开发的过程详解，不好之处，还请多多指点，欢迎关注我的微信公众号：程序伯乐。">
 <meta property="og:type" content="article">
-<meta property="og:title" content="composer在window的安装以及一些错误的解决方法">
-<meta property="og:url" content="https://inforoots.github.io/2017/05/04/composer-install/index.html">
+<meta property="og:title" content="Centos7安装Apache、php、Nginx、Mysql">
+<meta property="og:url" content="https://inforoots.github.io/2017/05/12/Lamp-install-config/index.html">
 <meta property="og:site_name" content="Hexo">
 <meta property="og:description" content="本文根据小编在项目中开发的过程详解，不好之处，还请多多指点，欢迎关注我的微信公众号：程序伯乐。">
-<meta property="og:image" content="https://inforoots.github.io/img/composer-success.png">
-<meta property="og:image" content="https://inforoots.github.io/img/composer-error1.png">
-<meta property="og:image" content="https://inforoots.github.io/img/composer-check.png">
-<meta property="og:updated_time" content="2017-05-05T02:36:29.363Z">
+<meta property="og:image" content="https://inforoots.github.io/img/apache.png">
+<meta property="og:image" content="https://inforoots.github.io/img/sysconfig.png">
+<meta property="og:image" content="https://inforoots.github.io/img/tcp-success.png">
+<meta property="og:updated_time" content="2017-05-12T07:19:27.587Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="composer在window的安装以及一些错误的解决方法">
+<meta name="twitter:title" content="Centos7安装Apache、php、Nginx、Mysql">
 <meta name="twitter:description" content="本文根据小编在项目中开发的过程详解，不好之处，还请多多指点，欢迎关注我的微信公众号：程序伯乐。">
-<meta name="twitter:image" content="https://inforoots.github.io/img/composer-success.png">
+<meta name="twitter:image" content="https://inforoots.github.io/img/apache.png">
   
     <link rel="alternative" href="/atom.xml" title="Hexo" type="application/atom+xml">
   
@@ -135,20 +135,20 @@
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            <article id="post-composer-install" class="article article-type-post " itemscope itemprop="blogPost">
+            <article id="post-Lamp-install-config" class="article article-type-post " itemscope itemprop="blogPost">
   <div class="article-inner">
     
       <header class="article-header">
         
   
     <h1 class="article-title" itemprop="name">
-      composer在window的安装以及一些错误的解决方法
+      Centos7安装Apache、php、Nginx、Mysql
     </h1>
   
 
         
-        <a href="/2017/05/04/composer-install/" class="archive-article-date">
-  	<time datetime="2017-05-04T08:23:45.603Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-05-04</time>
+        <a href="/2017/05/12/Lamp-install-config/" class="archive-article-date">
+  	<time datetime="2017-05-12T05:56:39.969Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-05-12</time>
 </a>
         
       </header>
@@ -156,13 +156,20 @@
     <div class="article-entry" itemprop="articleBody">
       
         <p>本文根据小编在项目中开发的过程详解，不好之处，还请多多指点，欢迎关注我的微信公众号：程序伯乐。<br><a id="more"></a></p>
-<h2 id="第一步：下载Composer-phar"><a href="#第一步：下载Composer-phar" class="headerlink" title="第一步：下载Composer.phar"></a>第一步：下载Composer.phar</h2><p>最新的Composer1.4.0文件我已上传到CSDN:<a href="http://download.csdn.net/detail/zwj941107/9833369" target="_blank" rel="external">http://download.csdn.net/detail/zwj941107/9833369</a><br>如果想下载最新的文件可到：<a href="https://getcomposer.org/download/" target="_blank" rel="external">https://getcomposer.org/download/</a></p>
-<h2 id="第二步：配置到PHP"><a href="#第二步：配置到PHP" class="headerlink" title="第二步：配置到PHP"></a>第二步：配置到PHP</h2><p>首先配置好PHP之后将PHP的根目录放置到环境变量上，接下来将下载的composer.phar放置到php的根目录，php版本要求在5.4以上，然后在当前目录下创建一个composer.bat文件，文件内容是 “ @php “%~dp0composer.phar” %*  “ ，用于运行composer.phar文件 。</p>
-<h2 id="第三步：检测Composer是否配置成功"><a href="#第三步：检测Composer是否配置成功" class="headerlink" title="第三步：检测Composer是否配置成功"></a>第三步：检测Composer是否配置成功</h2><p>打开CMD窗口，使用命令：composer。 如果出现以下图片的显示，就说明你已经配置好composer</p>
-<p><img src="/img/composer-success.png" alt=""></p>
-<h2 id="第四步：新手常见的错误和解决方法"><a href="#第四步：新手常见的错误和解决方法" class="headerlink" title="第四步：新手常见的错误和解决方法"></a>第四步：新手常见的错误和解决方法</h2><p>1、如果出现下图的错误，就说明你没有配置php.ini或你没有开启;extension=php_openssl.dll扩展，开启方式只要将扩展前面的分号去掉即可<br><img src="/img/composer-error1.png" alt=""></p>
-<p>2、如果你确定你的扩展是开启的。并且配置好第一到第三步。那你就要检测一下你配置php路径是否正确。可在CMD使用命令 php –ini 命令来检测，如图<br><img src="/img/composer-check.png" alt=""></p>
-<p>3、如果发生以下的错误，是因为没有配置证书，证书下载地址：<a href="http://download.csdn.net/detail/zwj941107/9834073" target="_blank" rel="external">http://download.csdn.net/detail/zwj941107/9834073</a>  ;配置在php.ini里的openssl.cafile中就可以了<br>The “<a href="https://packagist.phpcomposer.com/packages.json" target="_blank" rel="external">https://packagist.phpcomposer.com/packages.json</a>“ file could not be download<br>ed: SSL operation failed with code 1. OpenSSL Error messages:<br>error:14090086:SSL routines:ssl3_get_server_certificate:certificate verify faile<br>d</p>
+<h2 id="安装命令"><a href="#安装命令" class="headerlink" title="安装命令"></a>安装命令</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">//wget是一个从网络上自动下载文件的自由工具，支持通过HTTP、HTTPS、FTP三个最常见的TCP/IP协议下载</div><div class="line">yum install wget</div><div class="line">//Vim是一个类似于Vi的著名的功能强大、高度可定制的文本编辑器</div><div class="line">yum install vim</div></pre></td></tr></table></figure>
+<h2 id="安装Apache"><a href="#安装Apache" class="headerlink" title="安装Apache"></a>安装Apache</h2><h4 id="1、下载Apache："><a href="#1、下载Apache：" class="headerlink" title="1、下载Apache："></a>1、下载Apache：</h4><p> wget <a href="http://mirrors.tuna.tsinghua.edu.cn/apache//httpd/httpd-2.4.25.tar.gz" target="_blank" rel="external">http://mirrors.tuna.tsinghua.edu.cn/apache//httpd/httpd-2.4.25.tar.gz</a></p>
+<p><img src="/img/apache.png" alt=""></p>
+<h4 id="2、解压文件："><a href="#2、解压文件：" class="headerlink" title="2、解压文件："></a>2、解压文件：</h4><p> tar -zxvf httpd-2.4.25.tar.gz</p>
+<h4 id="3、安装apr、apr-util"><a href="#3、安装apr、apr-util" class="headerlink" title="3、安装apr、apr-util"></a>3、安装apr、apr-util</h4><p>wget <a href="http://mirrors.hust.edu.cn/apache//apr/apr-1.5.2.tar.gz" target="_blank" rel="external">http://mirrors.hust.edu.cn/apache//apr/apr-1.5.2.tar.gz</a><br>wget <a href="http://mirrors.hust.edu.cn/apache//apr/apr-util-1.5.4.tar.gz" target="_blank" rel="external">http://mirrors.hust.edu.cn/apache//apr/apr-util-1.5.4.tar.gz</a></p>
+<h4 id="4、解压"><a href="#4、解压" class="headerlink" title="4、解压"></a>4、解压</h4><p>tar -zxvf apr-1.5.2.tar.gz<br>tar -zxvf apr-util-1.5.4.tar.gz</p>
+<h4 id="5、重命名并移动到指定文件"><a href="#5、重命名并移动到指定文件" class="headerlink" title="5、重命名并移动到指定文件"></a>5、重命名并移动到指定文件</h4><p>mv apr-1.5.2 apr<br>mv apr-util-1.5.4 apr-util<br>mv apr apr-util httpd-2.4.25/srclib/</p>
+<h4 id="6、安装PCRE"><a href="#6、安装PCRE" class="headerlink" title="6、安装PCRE"></a>6、安装PCRE</h4><p>下载PCRE: wget ftp://ftp.csx.cam.ac.uk/pub/software/programming/pcre/pcre-8.39.tar.gz<br>解压PCRE: tar -zxvf pcre-8.39.tar.gz<br>进入PCRE目录： cd pcre-8.39<br>配置PCRE： ./configure –prefix=/usr/local/pcre<br>编译PCRE: make<br>安装PCRE: make install</p>
+<h4 id="7、配置Apache"><a href="#7、配置Apache" class="headerlink" title="7、配置Apache"></a>7、配置Apache</h4><p>进入Apache目录：cd httpd-2.4.25<br>配置Apache：./configure –prefix=/usr/local/apache2 –with-pcre=/usr/local/pcre/bin/pcre-config –with-included-apr<br>编译Apache：make<br>安装Apache：make install</p>
+<h4 id="8、测试Apache是否成功"><a href="#8、测试Apache是否成功" class="headerlink" title="8、测试Apache是否成功"></a>8、测试Apache是否成功</h4><p>进入Apache的bin目录：cd /usr/local/apache2/bin/<br>开启Apache：./apachectl -k start</p>
+<h4 id="9、常见的错误"><a href="#9、常见的错误" class="headerlink" title="9、常见的错误"></a>9、常见的错误</h4><p>9-1、如果访问网站失败，请检查能否ping通外网，如果不能请按照如下配置</p>
+<p>进入网关配置文件：vi /etc/sysconfig/network-scripts/ifcfg-ens32<br>配置如下图:<br><img src="/img/sysconfig.png" alt=""><br>重启网络服务：systemctl restart network.service<br>检查IP：ip addr</p>
+<p>9-2、如果ping通外网，那就是80端口被禁止了</p>
+<p>允许80端口命令：firewall-cmd –zone=public –add-port=80/tcp –permanent,出现下图的success表示成功，下图的警告是说我已经允许过80端口了<br><img src="/img/tcp-success.png" alt=""><br>重启网络服务：systemctl restart network.service</p>
 <h2 id="如果这篇文章对你有帮助，请帮作者点个Star-GitHub地址"><a href="#如果这篇文章对你有帮助，请帮作者点个Star-GitHub地址" class="headerlink" title="如果这篇文章对你有帮助，请帮作者点个Star,GitHub地址"></a>如果这篇文章对你有帮助，请帮作者点个Star,<a href="https://github.com/InfoRoots/InfoRoots.github.io" target="_blank" rel="external">GitHub地址</a></h2>
       
 
@@ -252,7 +259,7 @@
     <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
     <p>扫一扫，分享到微信</p>
     <div class="wx-qrcode">
-      <img src="http://s.jiathis.com/qrcode.php?url=https://inforoots.github.io/2017/05/04/composer-install/" alt="微信分享二维码">
+      <img src="http://s.jiathis.com/qrcode.php?url=https://inforoots.github.io/2017/05/12/Lamp-install-config/" alt="微信分享二维码">
     </div>
 </div>
 
@@ -266,18 +273,9 @@
   
 <nav id="article-nav">
   
-    <a href="/2017/05/12/Lamp-install-config/" id="article-nav-newer" class="article-nav-link-wrap">
-      <i class="icon-circle-left"></i>
-      <div class="article-nav-title">
-        
-          Centos7安装Apache、php、Nginx、Mysql
-        
-      </div>
-    </a>
   
-  
-    <a href="/2017/05/02/font-error-404/" id="article-nav-older" class="article-nav-link-wrap">
-      <div class="article-nav-title">如何才能让IIS、Apache和Nginx支持字体文件</div>
+    <a href="/2017/05/04/composer-install/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">composer在window的安装以及一些错误的解决方法</div>
       <i class="icon-circle-right"></i>
     </a>
   
@@ -291,7 +289,7 @@
   
   <div class="duoshuo">
 	<!-- 多说评论框 start -->
-	<div class="ds-thread" data-thread-key="composer-install" data-title="composer在window的安装以及一些错误的解决方法" data-url="https://inforoots.github.io/2017/05/04/composer-install/"></div>
+	<div class="ds-thread" data-thread-key="Lamp-install-config" data-title="Centos7安装Apache、php、Nginx、Mysql" data-url="https://inforoots.github.io/2017/05/12/Lamp-install-config/"></div>
 	<!-- 多说评论框 end -->
 	<!-- 多说公共JS代码 start (一个网页只需插入一次) -->
 	<script type="text/javascript">
