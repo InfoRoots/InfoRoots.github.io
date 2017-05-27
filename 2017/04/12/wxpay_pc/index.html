@@ -69,6 +69,8 @@
     			
             
     			
+    			<a q-on="click: openSlider(e, 'aboutme')" href="javascript:void(0)">关于我</a>
+    			
             
 		</nav>
 		<nav class="header-nav">
@@ -383,6 +385,8 @@ MathJax.Hub.Queue(function() {
       
     
       
+      
+      
     
     
 
@@ -390,11 +394,13 @@ MathJax.Hub.Queue(function() {
     
     
       
-      <li style="width: 100%" q-on="click: openSlider(e, 'innerArchive')"><a href="javascript:void(0)" q-class="active:innerArchive">所有文章</a></li>
+      <li style="width: 50%" q-on="click: openSlider(e, 'innerArchive')"><a href="javascript:void(0)" q-class="active:innerArchive">所有文章</a></li>
       
         
       
         
+      
+      <li style="width: 50%" q-on="click: openSlider(e, 'aboutme')"><a href="javascript:void(0)" q-class="active:aboutme">关于我</a></li>
       
         
     </ul>
@@ -459,6 +465,12 @@ MathJax.Hub.Queue(function() {
 
     
 
+    
+    	<section class="tools-section tools-section-me" q-show="aboutme">
+  	  	
+  	  		<div class="aboutme-wrap" id="js-aboutme">大家好，小编我是一名PHP开发程序员&lt;br&gt;从2017年3月份开始这个博客我会不定时分享开发过程中经常用到的干货, 以及自己的一些开发经验.&lt;br&gt;  如果对小编的文章有疑问或存在的问题，欢迎在文章的留言框留下你的观点。&lt;br&gt;小编祝各位早日走上人生巅峰，迎娶白富美，程序永远无BUG!</div>
+  	  	
+    	</section>
     
   </div>
   
