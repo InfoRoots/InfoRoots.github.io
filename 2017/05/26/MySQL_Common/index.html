@@ -14,13 +14,12 @@
 <meta property="og:url" content="https://inforoots.github.io/2017/05/26/MySQL_Common/index.html">
 <meta property="og:site_name" content="Hexo">
 <meta property="og:description" content="本文章针对数据库小白而写，同时请数据库大神给本文章指点不好之处和需改进的地方，欢迎关注我的微信公众号：程序伯乐。">
-<meta property="og:image" content="https://inforoots.github.io/\img\mysql_select.png">
-<meta property="og:image" content="https://inforoots.github.io/\img\mysql_desc.png">
-<meta property="og:updated_time" content="2017-05-26T03:55:53.421Z">
+<meta property="og:image" content="https://inforoots.github.io/\img\City-Province.png">
+<meta property="og:updated_time" content="2017-05-27T08:46:53.579Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="带你走进MySQL常用命令世界">
 <meta name="twitter:description" content="本文章针对数据库小白而写，同时请数据库大神给本文章指点不好之处和需改进的地方，欢迎关注我的微信公众号：程序伯乐。">
-<meta name="twitter:image" content="https://inforoots.github.io/\img\mysql_select.png">
+<meta name="twitter:image" content="https://inforoots.github.io/\img\City-Province.png">
   
     <link rel="alternative" href="/atom.xml" title="Hexo" type="application/atom+xml">
   
@@ -157,7 +156,7 @@
     <div class="article-entry" itemprop="articleBody">
       
         <p>本文章针对数据库小白而写，同时请数据库大神给本文章指点不好之处和需改进的地方，欢迎关注我的微信公众号：程序伯乐。<br><a id="more"></a></p>
-<h2 id="常用命令"><a href="#常用命令" class="headerlink" title="常用命令"></a>常用命令</h2><table>
+<h2 id="一-、常用命令"><a href="#一-、常用命令" class="headerlink" title="一 、常用命令"></a>一 、常用命令</h2><table>
 <thead>
 <tr>
 <th>命令</th>
@@ -227,14 +226,15 @@
 </tr>
 </tbody>
 </table>
-<h2 id="实例演示（演示一些包含条件和参数的SQL语句）"><a href="#实例演示（演示一些包含条件和参数的SQL语句）" class="headerlink" title="实例演示（演示一些包含条件和参数的SQL语句）"></a>实例演示（演示一些包含条件和参数的SQL语句）</h2><h3 id="1、创建一个zerg的数据库"><a href="#1、创建一个zerg的数据库" class="headerlink" title="1、创建一个zerg的数据库"></a>1、创建一个zerg的数据库</h3> <figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">create database zerg;</div></pre></td></tr></table></figure>
+<h2 id="二-、实例演示（演示一些包含条件和参数的SQL语句）"><a href="#二-、实例演示（演示一些包含条件和参数的SQL语句）" class="headerlink" title="二 、实例演示（演示一些包含条件和参数的SQL语句）"></a>二 、实例演示（演示一些包含条件和参数的SQL语句）</h2><h3 id="1、创建一个zerg的数据库"><a href="#1、创建一个zerg的数据库" class="headerlink" title="1、创建一个zerg的数据库"></a>1、创建一个zerg的数据库</h3> <figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">create database zerg;</div></pre></td></tr></table></figure>
 <h3 id="2、创建一个banner数据库表"><a href="#2、创建一个banner数据库表" class="headerlink" title="2、创建一个banner数据库表"></a>2、创建一个banner数据库表</h3> <figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line">use zerg</div><div class="line">drop table <span class="keyword">if</span> exists banner</div><div class="line">CREATE TABLE `banner` (</div><div class="line">  `id` int(11) NOT NULL AUTO_INCREMENT,</div><div class="line">  `name` varchar(50) DEFAULT NULL COMMENT <span class="string">'Banner名称，通常作为标识'</span>,</div><div class="line">  `description` varchar(255) DEFAULT NULL COMMENT <span class="string">'Banner描述'</span>,</div><div class="line">  `delete_time` int(11) DEFAULT NULL,</div><div class="line">  `update_time` int(11) DEFAULT NULL,</div><div class="line">  PRIMARY KEY (`id`)</div><div class="line">) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb4 COMMENT=<span class="string">'banner管理表'</span></div></pre></td></tr></table></figure>
 <h3 id="3、为banner表插入一条数据"><a href="#3、为banner表插入一条数据" class="headerlink" title="3、为banner表插入一条数据"></a>3、为banner表插入一条数据</h3>  <figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">insert into banner(name,description) values(<span class="string">'首页置顶'</span>,<span class="string">'首页轮播图'</span>);</div></pre></td></tr></table></figure>
 <p>  注：这里我解释一下为什么我只给其中两个赋值。id 在创建表的时候给它设置了AUTO_INCREMENT，每当有新的数据它为自动增加。而 ‘delete_time’ 和 ‘update_time’ 字段设置了DEFAULT NULL，所以也可以不用录入，并且这两个字符类型 int(11), 说明在业务代码开发会以时间戳的方式录入数据。</p>
-<h3 id="4、通过条件查询插入的信息"><a href="#4、通过条件查询插入的信息" class="headerlink" title="4、通过条件查询插入的信息"></a>4、通过条件查询插入的信息</h3><p>  <img src="\img\mysql_select.png" alt=""></p>
-<h3 id="5、查看表结构"><a href="#5、查看表结构" class="headerlink" title="5、查看表结构"></a>5、查看表结构</h3><p>  <img src="\img\mysql_desc.png" alt=""></p>
-<h3 id="6、修改表的字段name的值"><a href="#6、修改表的字段name的值" class="headerlink" title="6、修改表的字段name的值"></a>6、修改表的字段name的值</h3>  <figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">update banner <span class="built_in">set</span> <span class="string">'name'</span> = <span class="string">'首页'</span> <span class="built_in">where</span> id=<span class="string">'1'</span></div></pre></td></tr></table></figure>
-<h3 id="7、删除表中数据"><a href="#7、删除表中数据" class="headerlink" title="7、删除表中数据"></a>7、删除表中数据</h3><h4 id="删除表的数据之前，要先确认条件是否是唯一的。以免删除不该删除的数据，造成不可挽回的损失"><a href="#删除表的数据之前，要先确认条件是否是唯一的。以免删除不该删除的数据，造成不可挽回的损失" class="headerlink" title="删除表的数据之前，要先确认条件是否是唯一的。以免删除不该删除的数据，造成不可挽回的损失"></a>删除表的数据之前，要先确认条件是否是唯一的。以免删除不该删除的数据，造成不可挽回的损失</h4>  <figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">delete from banner  <span class="built_in">where</span> <span class="string">'name'</span> = <span class="string">'首页'</span></div></pre></td></tr></table></figure>
+<h3 id="4、修改表的字段name的值"><a href="#4、修改表的字段name的值" class="headerlink" title="4、修改表的字段name的值"></a>4、修改表的字段name的值</h3>  <figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">update banner <span class="built_in">set</span> <span class="string">'name'</span> = <span class="string">'首页'</span> <span class="built_in">where</span> id=<span class="string">'1'</span></div></pre></td></tr></table></figure>
+<h3 id="5、删除表中数据"><a href="#5、删除表中数据" class="headerlink" title="5、删除表中数据"></a>5、删除表中数据</h3><h4 id="删除表的数据之前，要先确认条件是否是唯一的。以免删除不该删除的数据，造成不可挽回的损失"><a href="#删除表的数据之前，要先确认条件是否是唯一的。以免删除不该删除的数据，造成不可挽回的损失" class="headerlink" title="删除表的数据之前，要先确认条件是否是唯一的。以免删除不该删除的数据，造成不可挽回的损失"></a>删除表的数据之前，要先确认条件是否是唯一的。以免删除不该删除的数据，造成不可挽回的损失</h4>  <figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">delete from banner  <span class="built_in">where</span> <span class="string">'name'</span> = <span class="string">'首页'</span></div></pre></td></tr></table></figure>
+<h2 id="三-、实战语句，关于地址的SQL语句"><a href="#三-、实战语句，关于地址的SQL语句" class="headerlink" title="三 、实战语句，关于地址的SQL语句"></a>三 、实战语句，关于地址的SQL语句</h2><h3 id="有两张表是City-和-Province-，-分别是城市与省份的关系表"><a href="#有两张表是City-和-Province-，-分别是城市与省份的关系表" class="headerlink" title="有两张表是City 和 Province ， 分别是城市与省份的关系表"></a>有两张表是City 和 Province ， 分别是城市与省份的关系表</h3><p>  <img src="\img\City-Province.png" alt=""></p>
+<h3 id="题目一、写一条sql语句关系两张表，实现：显示城市的基本信息，显示字段：城市ID-，城市名-，所属省份？"><a href="#题目一、写一条sql语句关系两张表，实现：显示城市的基本信息，显示字段：城市ID-，城市名-，所属省份？" class="headerlink" title="题目一、写一条sql语句关系两张表，实现：显示城市的基本信息，显示字段：城市ID ，城市名 ，所属省份？"></a>题目一、写一条sql语句关系两张表，实现：显示城市的基本信息，显示字段：城市ID ，城市名 ，所属省份？</h3>  <figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">SELECT c.id AS id , c.city AS cityname , p.province FROM city c LEFI JOIN province p ON c.province = p.id</div></pre></td></tr></table></figure>
+<h3 id="题目二、写一条sql语句关系两张表，实现：显示城市的基本信息，显示字段：城市ID-，城市名-，所属省份？"><a href="#题目二、写一条sql语句关系两张表，实现：显示城市的基本信息，显示字段：城市ID-，城市名-，所属省份？" class="headerlink" title="题目二、写一条sql语句关系两张表，实现：显示城市的基本信息，显示字段：城市ID ，城市名 ，所属省份？"></a>题目二、写一条sql语句关系两张表，实现：显示城市的基本信息，显示字段：城市ID ，城市名 ，所属省份？</h3>  <figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">SELECT p.id , p.province , count(c.id) FROM province p LEFI JOIN city c ON p.id = c.provinceid GROUP BY p.id</div></pre></td></tr></table></figure>
 <p>如果这篇文章对你有帮助，请帮作者点个Star,<a href="https://github.com/InfoRoots/InfoRoots.github.io" target="_blank" rel="external">GitHub地址</a></p>
 
       
