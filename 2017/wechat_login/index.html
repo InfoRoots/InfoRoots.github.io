@@ -6,14 +6,21 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <link rel="dns-prefetch" href="https://inforoots.github.io">
-  <title>Archives | Hexo</title>
+  <title>微信登陆开发详解（手机登陆） | Hexo</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta property="og:type" content="website">
-<meta property="og:title" content="Hexo">
-<meta property="og:url" content="https://inforoots.github.io/archives/index.html">
+  <meta name="description" content="本文详细描述了小编在开发微信登陆时的过程。有不好之处，还请多多指点，欢迎关注我的微信公众号：程序伯乐。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="微信登陆开发详解（手机登陆）">
+<meta property="og:url" content="https://inforoots.github.io/2017/wechat_login/index.html">
 <meta property="og:site_name" content="Hexo">
+<meta property="og:description" content="本文详细描述了小编在开发微信登陆时的过程。有不好之处，还请多多指点，欢迎关注我的微信公众号：程序伯乐。">
+<meta property="og:image" content="https://inforoots.github.io/img/access_token.png">
+<meta property="og:image" content="https://inforoots.github.io/img/scape.png">
+<meta property="og:updated_time" content="2017-05-31T06:40:42.394Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Hexo">
+<meta name="twitter:title" content="微信登陆开发详解（手机登陆）">
+<meta name="twitter:description" content="本文详细描述了小编在开发微信登陆时的过程。有不好之处，还请多多指点，欢迎关注我的微信公众号：程序伯乐。">
+<meta name="twitter:image" content="https://inforoots.github.io/img/access_token.png">
   
     <link rel="alternative" href="/atom.xml" title="Hexo" type="application/atom+xml">
   
@@ -129,406 +136,244 @@
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            
-  
-  
+            <article id="post-wechat_login" class="article article-type-post " itemscope itemprop="blogPost">
+  <div class="article-inner">
     
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      微信登陆开发详解（手机登陆）
+    </h1>
+  
+
+        
+        <a href="/2017/wechat_login/" class="archive-article-date">
+  	<time datetime="2017-03-12T16:00:00.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-03-13</time>
+</a>
+        
+      </header>
     
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>本文详细描述了小编在开发微信登陆时的过程。有不好之处，还请多多指点，欢迎关注我的微信公众号：程序伯乐。<br><a id="more"></a></p>
+<h2 id="第一步：根据官方手册先做准备工作"><a href="#第一步：根据官方手册先做准备工作" class="headerlink" title="第一步：根据官方手册先做准备工作"></a>第一步：根据官方手册先做准备工作</h2><pre><code>在进行微信OAuth2.在进行微信OAuth2.0授权登录接入之前，在微信开放平台注册开发者帐号，并拥有一个已审核通过的网站应用，并获得相应的AppID和AppSecret，申请微信登录且通过审核后，可开始接入流程。
+</code></pre><p>微信开放平台链接：<a href="https://open.weixin.qq.com/" target="_blank" rel="external">https://open.weixin.qq.com/</a><br>微信登陆开发文档：<a href="https://open.weixin.qq.com/cgi-bin/showdocument?action=dir_list&amp;t=resource/res_list&amp;verify=1&amp;lang=zh_CN&amp;token=8b60fff6eb66c3aea970be1a5c8de9cc9c9a874e" target="_blank" rel="external">https://open.weixin.qq.com/cgi-bin/showdocument?action=dir_list&amp;t=resource/res_list&amp;verify=1&amp;lang=zh_CN&amp;token=8b60fff6eb66c3aea970be1a5c8de9cc9c9a874e</a></p>
+<h2 id="第二步：开发整体流程图"><a href="#第二步：开发整体流程图" class="headerlink" title="第二步：开发整体流程图"></a>第二步：开发整体流程图</h2><p>通过下图我们可以初步了解,要获取用户信息就必须获取access_token,而想获取access_token就必须使用code、appid、appsecret三个参数去获取，往下继续了解这三个参数的获取方式</p>
+<p><img src="/img/access_token.png" alt=""></p>
+<h3 id="1、三个参数获取方式"><a href="#1、三个参数获取方式" class="headerlink" title="1、三个参数获取方式"></a>1、三个参数获取方式</h3> <figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">AppID和AppSecret：第一步已经说明获取方法</div><div class="line"></div><div class="line">code是通过链接获取：https://open.weixin.qq.com/connect/oauth2/authorize?appid=<span class="variable">$appid</span>&amp;redirect_uri=<span class="variable">$back</span>&amp;response_type=code&amp;scope=snsapi_userinfo&amp;state=STATE<span class="comment">#wechat_redirect</span></div><div class="line"></div><div class="line">access_token获取方式: https://api.weixin.qq.com/sns/oauth2/access_token?appid=APPID&amp;secret=SECRET&amp;code=CODE&amp;grant_type=authorization_code</div></pre></td></tr></table></figure>
+<h3 id="2、详解获取code的链接中的scope参数如何设置"><a href="#2、详解获取code的链接中的scope参数如何设置" class="headerlink" title="2、详解获取code的链接中的scope参数如何设置"></a>2、详解获取code的链接中的scope参数如何设置</h3><p><img src="/img/scape.png" alt=""></p>
+<h3 id="3、实现思路"><a href="#3、实现思路" class="headerlink" title="3、实现思路"></a>3、实现思路</h3><pre><code>1、用户点击微信登陆，先判断用户之前是否使用过微信登陆，如果有则成功跳转，否则执行下一步
+2、判断用户是否在微信内置的浏览器上，如果不是则跳转到注册页面
+3、如果是则判断$_GET[&apos;code&apos;]是否有值，下一步请求code会传一个参数redirect_url,会重定向到当前判断
+4、使用链接获取code，需要传APPID和redirect_url两个参数
+5、成功我们就使用code、APPID、AppSecret来换取access_token
+</code></pre><h2 id="第三步：代码开发"><a href="#第三步：代码开发" class="headerlink" title="第三步：代码开发"></a>第三步：代码开发</h2><h3 id="手机端"><a href="#手机端" class="headerlink" title="手机端"></a>手机端</h3><pre><code class="bash">//返回登录页面
+    public <span class="keyword">function</span> <span class="function"><span class="title">login</span></span>(){
+
+        //查找用户是否存在
+        <span class="variable">$user</span> = <span class="variable">$this</span>-&gt;userinfo;
+
+        <span class="keyword">if</span>(<span class="variable">$user</span>){
+            header(<span class="string">"Location:"</span>.WEB_PATH.<span class="string">"/mobile/home/"</span>);<span class="built_in">exit</span>;
+        }
+
+        /** 判断请求来源是否是微信内置浏览器 */
+        <span class="keyword">if</span>(<span class="variable">$this</span>-&gt;is_wxbrow()){
+
+                 //获取APPID和APPSECRET两个参数
+                 <span class="variable">$cfg</span>=System::load_sys_config(<span class="string">'weixin'</span>);
+                 <span class="variable">$appid</span> = <span class="variable">$cfg</span>[<span class="string">'appid'</span>] ; 
+                 <span class="variable">$appsecret</span> = <span class="variable">$cfg</span>[<span class="string">'appsecret'</span>] ;
+
+                <span class="keyword">if</span> (!isset(<span class="variable">$_GET</span>[<span class="string">'code'</span>])) {
+
+                    <span class="variable">$back</span> = WEB_PATH.<span class="string">"/mobile/user/login/"</span> ;
+                    //scope参数为snsapi_userinfo
+                    <span class="variable">$url</span> = <span class="string">"https://open.weixin.qq.com/connect/oauth2/authorize?appid=<span class="variable">$appid</span>&amp;redirect_uri=<span class="variable">$back</span>&amp;response_type=code&amp;scope=snsapi_userinfo&amp;state=STATE#wechat_redirect"</span>;
+                    Header(<span class="string">"Location: <span class="variable">$url</span>"</span>);
+                    <span class="built_in">exit</span>();
+
+                } <span class="keyword">else</span> {  
+                    <span class="variable">$formeat</span> = <span class="string">'http://'</span>.<span class="variable">$_SERVER</span>[<span class="string">'HTTP_HOST'</span>].<span class="variable">$_SERVER</span>[<span class="string">'REQUEST_URI'</span>];
+                    <span class="variable">$code</span> = <span class="variable">$_GET</span>[<span class="string">'code'</span>]; 
+
+                    <span class="variable">$openidurl</span> = <span class="string">"https://api.weixin.qq.com/sns/oauth2/access_token?appid=<span class="variable">$appid</span>&amp;secret=<span class="variable">$appsecret</span>&amp;code=<span class="variable">$code</span>&amp;grant_type=authorization_code"</span> ;
+                    <span class="variable">$ch</span> = curl_init();                                //创建CURL会话
+                    curl_setopt(<span class="variable">$ch</span>, CURLOPT_TIMEOUT, 30);          //限定页面时间
+                    curl_setopt(<span class="variable">$ch</span>, CURLOPT_URL, <span class="variable">$openidurl</span>);      //查询的链接 
+                    curl_setopt(<span class="variable">$ch</span>,CURLOPT_SSL_VERIFYPEER,FALSE);  //FALSE禁止cURL验证对等证书
+                    curl_setopt(<span class="variable">$ch</span>,CURLOPT_SSL_VERIFYHOST,FALSE);  //verifyhost
+                    curl_setopt(<span class="variable">$ch</span>, CURLOPT_HEADER, FALSE);        //启用时会将头文件的信息作为数据流输出
+                    curl_setopt(<span class="variable">$ch</span>, CURLOPT_RETURNTRANSFER, TRUE); //获取内容但不输出
+                    <span class="variable">$res</span> = curl_exec(<span class="variable">$ch</span>);                            //抓取URL并把它传递给浏览器，CURLOPT_RETURNTRANSFER为TRUE 将curl_exec()获取的信息以字符串返回，而不是直接输出。
+                    curl_close(<span class="variable">$ch</span>);                                //关闭cUrl会话
+                    <span class="variable">$opendata</span> = json_decode(<span class="variable">$res</span>,<span class="literal">true</span>);
+                    <span class="variable">$openid</span> = <span class="variable">$opendata</span>[<span class="string">'openid'</span>];
+                    <span class="variable">$access_token</span> = <span class="variable">$opendata</span>[<span class="string">'access_token'</span>];
+
+                    <span class="variable">$userinfo</span>=<span class="variable">$this</span>-&gt;db-&gt;GetOne(<span class="string">"SELECT * from `@#_member` where `openid` = '<span class="variable">$openid</span>'"</span>);
+                    <span class="keyword">if</span>(<span class="variable">$userinfo</span>){
+                            //跟新session
+                            _setcookie(<span class="string">"uid"</span>,_encrypt(<span class="variable">$userinfo</span>[<span class="string">'uid'</span>]),60*60*24*7);
+                            _setcookie(<span class="string">"ushell"</span>,_encrypt(md5(<span class="variable">$userinfo</span>[<span class="string">'uid'</span>].<span class="variable">$userinfo</span>[<span class="string">'password'</span>].<span class="variable">$userinfo</span>[<span class="string">'mobile'</span>].<span class="variable">$userinfo</span>[<span class="string">'email'</span>])),60*60*24*7);
+                            header(<span class="string">"location: <span class="variable">$formeat</span>"</span>);
+                    }<span class="keyword">else</span>{
+                        //注册  
+                        //获取用户的详细信息
+                            <span class="variable">$userinfourl</span> = <span class="string">"https://api.weixin.qq.com/sns/userinfo?access_token=<span class="variable">$access_token</span>&amp;openid=<span class="variable">$openid</span>&amp;lang=zh_CN"</span>;
+                            <span class="variable">$chr</span> = curl_init();
+                            curl_setopt(<span class="variable">$chr</span>, CURLOPT_TIMEOUT, 30);
+                            curl_setopt(<span class="variable">$chr</span>, CURLOPT_URL, <span class="variable">$userinfourl</span>);
+                            curl_setopt(<span class="variable">$chr</span>,CURLOPT_SSL_VERIFYPEER,FALSE);
+                            curl_setopt(<span class="variable">$chr</span>,CURLOPT_SSL_VERIFYHOST,FALSE);
+                            curl_setopt(<span class="variable">$chr</span>, CURLOPT_HEADER, FALSE);
+                            curl_setopt(<span class="variable">$chr</span>, CURLOPT_RETURNTRANSFER, TRUE);
+                            <span class="variable">$userinfo</span> = curl_exec(<span class="variable">$chr</span>);
+                            curl_close(<span class="variable">$chr</span>);
+                            <span class="variable">$uinfo</span> = json_decode(<span class="variable">$userinfo</span>,<span class="literal">true</span>); //将xml转换成array
+
+                            //保存用户的姓名和头像
+                            <span class="variable">$username</span>=<span class="variable">$uinfo</span>[<span class="string">'nickname'</span>];
+                            <span class="variable">$img</span>=<span class="variable">$uinfo</span>[<span class="string">'headimgurl'</span>];
+                            _setcookie(<span class="string">'bd_nickname'</span>,<span class="variable">$username</span>);
+                            _setcookie(<span class="string">'bd_headimgurl'</span>,<span class="variable">$img</span>);
+                            _setcookie(<span class="string">'bd_openid'</span>,<span class="variable">$openid</span>);
+                            include templates(<span class="string">"mobile/user"</span>,<span class="string">"bangding"</span>);
+                           <span class="built_in">exit</span>;   
+                       }
+                }
+        }<span class="keyword">else</span> {
+            include templates(<span class="string">"mobile/user"</span>,<span class="string">"login"</span>);
+        }
+
+
+    }
+
+    /** 判断请求来源是否是微信内置浏览器 */
+    private <span class="keyword">function</span> <span class="function"><span class="title">is_wxbrow</span></span>(){
+
+        //<span class="variable">$_SERVER</span>[<span class="string">'HTTP_USER_AGENT'</span>]: 是获取访问者的个人信息
+        //strtolower： 转换成小写
+        <span class="variable">$agent</span> = strtolower(<span class="variable">$_SERVER</span>[<span class="string">'HTTP_USER_AGENT'</span>]); 
+
+        //通过micromessenger来识别是否是微信内置浏览器，strpos的作用是查找
+        <span class="variable">$fg</span>  = strpos(<span class="variable">$agent</span> , <span class="string">"micromessenger"</span>) ; 
+        <span class="keyword">if</span>(<span class="variable">$fg</span> === <span class="literal">false</span> ) <span class="built_in">return</span> <span class="literal">false</span> ;
+        <span class="keyword">else</span> <span class="built_in">return</span> <span class="literal">true</span> ;
+    }
+</code></pre>
+<p>如果这篇文章对你有帮助，请帮作者点个Star,<a href="https://github.com/InfoRoots/InfoRoots.github.io" target="_blank" rel="external">GitHub地址</a></p>
+
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
       
       
-      <section class="archives-wrap">
-        <div class="archive-year-wrap">
-          <a href="/archives/2017" class="archive-year">2017</a>
-        </div>
-        <div class="archives">
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2017/MySQL_Common/" class="archive-article-date">
-  	<time datetime="2017-05-25T16:00:00.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-05-26</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2017/MySQL_Common/">带你走进MySQL常用命令世界</a>
-    </h1>
-  
-
-        <div class="article-info info-on-right">
-          
 	<div class="article-tag tagcloud">
 		<i class="icon-price-tags icon"></i>
 		<ul class="article-tag-list">
 			 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">MySQL</a>
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">微信开发</a>
         		</li>
       		
 		</ul>
 	</div>
 
-          
+      
 
+      
+
+      
+        
+<div class="share-btn share-icons tooltip-left">
+  <div class="tooltip tooltip-east">
+    <span class="tooltip-item">
+      <a href="javascript:;" class="share-sns share-outer">
+        <i class="icon icon-share"></i>
+      </a>
+    </span>
+    <span class="tooltip-content">
+      <div class="share-wrap">
+        <div class="share-icons">
+          <a class="weibo share-sns" href="javascript:;" data-type="weibo">
+            <i class="icon icon-weibo"></i>
+          </a>
+          <a class="weixin share-sns wxFab" href="javascript:;" data-type="weixin">
+            <i class="icon icon-weixin"></i>
+          </a>
+          <a class="qq share-sns" href="javascript:;" data-type="qq">
+            <i class="icon icon-qq"></i>
+          </a>
+          <a class="douban share-sns" href="javascript:;" data-type="douban">
+            <i class="icon icon-douban"></i>
+          </a>
+          <a class="qzone share-sns" href="javascript:;" data-type="qzone">
+            <i class="icon icon-qzone"></i>
+          </a>
+          <a class="facebook share-sns" href="javascript:;" data-type="facebook">
+            <i class="icon icon-facebook"></i>
+          </a>
+          <a class="twitter share-sns" href="javascript:;" data-type="twitter">
+            <i class="icon icon-twitter"></i>
+          </a>
+          <a class="google share-sns" href="javascript:;" data-type="google">
+            <i class="icon icon-google"></i>
+          </a>
         </div>
-        <div class="clearfix"></div>
-    </header>
+      </div>
+    </span>
+  </div>
+</div>
+
+<div class="page-modal wx-share js-wx-box">
+    <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <div class="wx-qrcode">
+      <img src="http://s.jiathis.com/qrcode.php?url=https://inforoots.github.io/2017/wechat_login/" alt="微信分享二维码">
+    </div>
+</div>
+
+<div class="mask js-mask"></div>
+      
+      <div class="clearfix"></div>
+    </div>
   </div>
 </article>
+
   
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2017/PHP_XDebug/" class="archive-article-date">
-  	<time datetime="2017-05-22T16:00:00.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-05-23</time>
-</a>
-        </div>
-    	 
+<nav id="article-nav">
   
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2017/PHP_XDebug/">配置PHP的Xdebug调试扩展</a>
-    </h1>
+    <a href="/2017/URL_Rewrite/" id="article-nav-newer" class="article-nav-link-wrap">
+      <i class="icon-circle-left"></i>
+      <div class="article-nav-title">
+        
+          Thinkphp5实现URL重定向
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2017/hexo-GitHubPage/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">Hexo-GitHubPage配置详解</div>
+      <i class="icon-circle-right"></i>
+    </a>
+  
+</nav>
+
+
+
+
+
+
+  
+    <div class="duoshuo"></div>
   
 
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">PHP</a>
-        		</li>
-      		
-		</ul>
-	</div>
 
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2017/ThinkPHP_XAMPP/" class="archive-article-date">
-  	<time datetime="2017-05-21T16:00:00.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-05-22</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2017/ThinkPHP_XAMPP/">XAMPP配置虚拟域名</a>
-    </h1>
-  
-
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">Other</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2017/linux_nginx_htaccess/" class="archive-article-date">
-  	<time datetime="2017-05-17T16:00:00.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-05-18</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2017/linux_nginx_htaccess/">Apache和Nginx下的Rewrite规则</a>
-    </h1>
-  
-
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">Other</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2017/linux_list/" class="archive-article-date">
-  	<time datetime="2017-05-16T16:00:00.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-05-17</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2017/linux_list/">Linux目录结构超详细解析</a>
-    </h1>
-  
-
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">Linux</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2017/Github_SSH_COMMIT/" class="archive-article-date">
-  	<time datetime="2017-05-15T16:00:00.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-05-16</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2017/Github_SSH_COMMIT/">教你配置SSH来把代码提交到GitHub</a>
-    </h1>
-  
-
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">GitHub</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2017/Lamp-install-config/" class="archive-article-date">
-  	<time datetime="2017-05-11T16:00:00.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-05-12</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2017/Lamp-install-config/">Centos7安装Apache、php、Nginx、Mysql</a>
-    </h1>
-  
-
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">Linux</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2017/composer-install/" class="archive-article-date">
-  	<time datetime="2017-05-03T16:00:00.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-05-04</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2017/composer-install/">composer在window的安装以及一些错误的解决方法</a>
-    </h1>
-  
-
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">PHP</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2017/font-error-404/" class="archive-article-date">
-  	<time datetime="2017-05-01T16:00:00.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-05-02</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2017/font-error-404/">如何才能让IIS、Apache和Nginx支持字体文件</a>
-    </h1>
-  
-
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">Other</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2017/thinkphp5.0/" class="archive-article-date">
-  	<time datetime="2017-04-26T16:00:00.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-04-27</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2017/thinkphp5.0/">Thinkphp5.0.5 判断是手机端还是PC端</a>
-    </h1>
-  
-
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">ThinkPHP</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-  
-    </div></section>
-  
-
-    
-    <nav id="page-nav">
-      <span class="page-number current">1</span><a class="page-number" href="/archives/page/2/">2</a><a class="extend next" rel="next" href="/archives/page/2/">Next &raquo;</a>
-    </nav>
-  
 
 
           </div>
@@ -551,8 +396,8 @@
 	var yiliaConfig = {
 		mathjax: true,
 		isHome: false,
-		isPost: false,
-		isArchive: true,
+		isPost: true,
+		isArchive: false,
 		isTag: false,
 		isCategory: false,
 		open_in_new: false,

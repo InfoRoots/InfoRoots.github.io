@@ -6,14 +6,23 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <link rel="dns-prefetch" href="https://inforoots.github.io">
-  <title>Archives | Hexo</title>
+  <title>Thinkphp5实现URL重定向 | Hexo</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta property="og:type" content="website">
-<meta property="og:title" content="Hexo">
-<meta property="og:url" content="https://inforoots.github.io/archives/index.html">
+  <meta name="description" content="本文详细描述了小编给Thinkphp5配置URL重定向时的过程，不好之处，还请多多指点，本文以IIS为例，欢迎关注我的微信公众号：程序伯乐。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Thinkphp5实现URL重定向">
+<meta property="og:url" content="https://inforoots.github.io/2017/URL_Rewrite/index.html">
 <meta property="og:site_name" content="Hexo">
+<meta property="og:description" content="本文详细描述了小编给Thinkphp5配置URL重定向时的过程，不好之处，还请多多指点，本文以IIS为例，欢迎关注我的微信公众号：程序伯乐。">
+<meta property="og:image" content="https://inforoots.github.io/img/rewrite.png">
+<meta property="og:image" content="https://inforoots.github.io/img/input.png">
+<meta property="og:image" content="https://inforoots.github.io/img/input2.png">
+<meta property="og:image" content="https://inforoots.github.io/img/url.png">
+<meta property="og:updated_time" content="2017-05-31T06:40:43.734Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Hexo">
+<meta name="twitter:title" content="Thinkphp5实现URL重定向">
+<meta name="twitter:description" content="本文详细描述了小编给Thinkphp5配置URL重定向时的过程，不好之处，还请多多指点，本文以IIS为例，欢迎关注我的微信公众号：程序伯乐。">
+<meta name="twitter:image" content="https://inforoots.github.io/img/rewrite.png">
   
     <link rel="alternative" href="/atom.xml" title="Hexo" type="application/atom+xml">
   
@@ -129,378 +138,44 @@
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            
-  
-  
+            <article id="post-URL_Rewrite" class="article article-type-post " itemscope itemprop="blogPost">
+  <div class="article-inner">
     
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      Thinkphp5实现URL重定向
+    </h1>
+  
+
+        
+        <a href="/2017/URL_Rewrite/" class="archive-article-date">
+  	<time datetime="2017-03-22T16:00:00.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-03-23</time>
+</a>
+        
+      </header>
     
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>本文详细描述了小编给Thinkphp5配置URL重定向时的过程，不好之处，还请多多指点，本文以IIS为例，欢迎关注我的微信公众号：程序伯乐。<br><a id="more"></a></p>
+<h2 id="创建-htaccess-将下面代码写入文件内"><a href="#创建-htaccess-将下面代码写入文件内" class="headerlink" title="创建.htaccess,将下面代码写入文件内"></a>创建.htaccess,将下面代码写入文件内</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line">&lt;IfModule mod_rewrite.c&gt;</div><div class="line">  Options +FollowSymlinks -Multiviews</div><div class="line">  RewriteEngine On</div><div class="line"></div><div class="line">  RewriteCond %&#123;REQUEST_FILENAME&#125; !<span class="_">-d</span></div><div class="line">  RewriteCond %&#123;REQUEST_FILENAME&#125; !<span class="_">-f</span></div><div class="line">  RewriteRule ^(.*)$ index.php/<span class="variable">$1</span> [QSA,PT,L]</div><div class="line">&lt;/IfModule&gt;</div></pre></td></tr></table></figure>
+<h2 id="安装URL重写组件"><a href="#安装URL重写组件" class="headerlink" title="安装URL重写组件"></a>安装URL重写组件</h2><h4 id="先安装URL组件，小编已经把组件64位和32位发布到CSDN"><a href="#先安装URL组件，小编已经把组件64位和32位发布到CSDN" class="headerlink" title="先安装URL组件，小编已经把组件64位和32位发布到CSDN"></a>先安装URL组件，小编已经把组件64位和32位发布到CSDN</h4><p><a href="http://download.csdn.net/detail/zwj941107/9790754" target="_blank" rel="external">http://download.csdn.net/detail/zwj941107/9790754</a></p>
+<h4 id="如果觉得版本太旧下面是官网链接，不过不翻墙会访问会比较慢"><a href="#如果觉得版本太旧下面是官网链接，不过不翻墙会访问会比较慢" class="headerlink" title="如果觉得版本太旧下面是官网链接，不过不翻墙会访问会比较慢"></a>如果觉得版本太旧下面是官网链接，不过不翻墙会访问会比较慢</h4><p><a href="https://www.iis.net/downloads/microsoft/url-rewrite#additionalDownloads" target="_blank" rel="external">https://www.iis.net/downloads/microsoft/url-rewrite#additionalDownloads</a></p>
+<p>小编在这里就不演示安装了，都是直接点下一步，安装完成要重启</p>
+<h4 id="重启完成你打开IIS可以看到一个URL-Rewrite"><a href="#重启完成你打开IIS可以看到一个URL-Rewrite" class="headerlink" title="重启完成你打开IIS可以看到一个URL Rewrite"></a>重启完成你打开IIS可以看到一个URL Rewrite</h4><p><img src="/img/rewrite.png" alt=""></p>
+<h4 id="选择右边栏的-Import-Rules-英文版-小编也很烦"><a href="#选择右边栏的-Import-Rules-英文版-小编也很烦" class="headerlink" title="选择右边栏的 Import Rules(-_-英文版,小编也很烦)"></a>选择右边栏的 Import Rules(-_-英文版,小编也很烦)</h4><p><img src="/img/input.png" alt=""></p>
+<h4 id="最后了，看图中的红字，输入完点击Import，完成，好了，试试访问下网站吧"><a href="#最后了，看图中的红字，输入完点击Import，完成，好了，试试访问下网站吧" class="headerlink" title="最后了，看图中的红字，输入完点击Import，完成，好了，试试访问下网站吧"></a>最后了，看图中的红字，输入完点击Import，完成，好了，试试访问下网站吧</h4><p><img src="/img/input2.png" alt=""></p>
+<h4 id="以下是小编配置成功的页面"><a href="#以下是小编配置成功的页面" class="headerlink" title="以下是小编配置成功的页面"></a>以下是小编配置成功的页面</h4><p><img src="/img/url.png" alt=""></p>
+<p>如果这篇文章对你有帮助，请帮作者点个Star,<a href="https://github.com/InfoRoots/InfoRoots.github.io" target="_blank" rel="external">GitHub地址</a></p>
+
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
       
       
-      <section class="archives-wrap">
-        <div class="archive-year-wrap">
-          <a href="/archives/2017" class="archive-year">2017</a>
-        </div>
-        <div class="archives">
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2017/MySQL_Common/" class="archive-article-date">
-  	<time datetime="2017-05-25T16:00:00.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-05-26</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2017/MySQL_Common/">带你走进MySQL常用命令世界</a>
-    </h1>
-  
-
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">MySQL</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2017/PHP_XDebug/" class="archive-article-date">
-  	<time datetime="2017-05-22T16:00:00.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-05-23</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2017/PHP_XDebug/">配置PHP的Xdebug调试扩展</a>
-    </h1>
-  
-
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">PHP</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2017/ThinkPHP_XAMPP/" class="archive-article-date">
-  	<time datetime="2017-05-21T16:00:00.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-05-22</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2017/ThinkPHP_XAMPP/">XAMPP配置虚拟域名</a>
-    </h1>
-  
-
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">Other</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2017/linux_nginx_htaccess/" class="archive-article-date">
-  	<time datetime="2017-05-17T16:00:00.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-05-18</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2017/linux_nginx_htaccess/">Apache和Nginx下的Rewrite规则</a>
-    </h1>
-  
-
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">Other</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2017/linux_list/" class="archive-article-date">
-  	<time datetime="2017-05-16T16:00:00.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-05-17</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2017/linux_list/">Linux目录结构超详细解析</a>
-    </h1>
-  
-
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">Linux</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2017/Github_SSH_COMMIT/" class="archive-article-date">
-  	<time datetime="2017-05-15T16:00:00.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-05-16</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2017/Github_SSH_COMMIT/">教你配置SSH来把代码提交到GitHub</a>
-    </h1>
-  
-
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">GitHub</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2017/Lamp-install-config/" class="archive-article-date">
-  	<time datetime="2017-05-11T16:00:00.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-05-12</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2017/Lamp-install-config/">Centos7安装Apache、php、Nginx、Mysql</a>
-    </h1>
-  
-
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">Linux</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2017/composer-install/" class="archive-article-date">
-  	<time datetime="2017-05-03T16:00:00.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-05-04</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2017/composer-install/">composer在window的安装以及一些错误的解决方法</a>
-    </h1>
-  
-
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">PHP</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2017/font-error-404/" class="archive-article-date">
-  	<time datetime="2017-05-01T16:00:00.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-05-02</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2017/font-error-404/">如何才能让IIS、Apache和Nginx支持字体文件</a>
-    </h1>
-  
-
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">Other</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2017/thinkphp5.0/" class="archive-article-date">
-  	<time datetime="2017-04-26T16:00:00.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-04-27</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2017/thinkphp5.0/">Thinkphp5.0.5 判断是手机端还是PC端</a>
-    </h1>
-  
-
-        <div class="article-info info-on-right">
-          
 	<div class="article-tag tagcloud">
 		<i class="icon-price-tags icon"></i>
 		<ul class="article-tag-list">
@@ -512,23 +187,97 @@
 		</ul>
 	</div>
 
-          
+      
 
+      
+
+      
+        
+<div class="share-btn share-icons tooltip-left">
+  <div class="tooltip tooltip-east">
+    <span class="tooltip-item">
+      <a href="javascript:;" class="share-sns share-outer">
+        <i class="icon icon-share"></i>
+      </a>
+    </span>
+    <span class="tooltip-content">
+      <div class="share-wrap">
+        <div class="share-icons">
+          <a class="weibo share-sns" href="javascript:;" data-type="weibo">
+            <i class="icon icon-weibo"></i>
+          </a>
+          <a class="weixin share-sns wxFab" href="javascript:;" data-type="weixin">
+            <i class="icon icon-weixin"></i>
+          </a>
+          <a class="qq share-sns" href="javascript:;" data-type="qq">
+            <i class="icon icon-qq"></i>
+          </a>
+          <a class="douban share-sns" href="javascript:;" data-type="douban">
+            <i class="icon icon-douban"></i>
+          </a>
+          <a class="qzone share-sns" href="javascript:;" data-type="qzone">
+            <i class="icon icon-qzone"></i>
+          </a>
+          <a class="facebook share-sns" href="javascript:;" data-type="facebook">
+            <i class="icon icon-facebook"></i>
+          </a>
+          <a class="twitter share-sns" href="javascript:;" data-type="twitter">
+            <i class="icon icon-twitter"></i>
+          </a>
+          <a class="google share-sns" href="javascript:;" data-type="google">
+            <i class="icon icon-google"></i>
+          </a>
         </div>
-        <div class="clearfix"></div>
-    </header>
+      </div>
+    </span>
+  </div>
+</div>
+
+<div class="page-modal wx-share js-wx-box">
+    <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <div class="wx-qrcode">
+      <img src="http://s.jiathis.com/qrcode.php?url=https://inforoots.github.io/2017/URL_Rewrite/" alt="微信分享二维码">
+    </div>
+</div>
+
+<div class="mask js-mask"></div>
+      
+      <div class="clearfix"></div>
+    </div>
   </div>
 </article>
+
+  
+<nav id="article-nav">
+  
+    <a href="/2017/wxpay_pc/" id="article-nav-newer" class="article-nav-link-wrap">
+      <i class="icon-circle-left"></i>
+      <div class="article-nav-title">
+        
+          微信扫码支付开发
+        
+      </div>
+    </a>
   
   
-    </div></section>
+    <a href="/2017/wechat_login/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">微信登陆开发详解（手机登陆）</div>
+      <i class="icon-circle-right"></i>
+    </a>
+  
+</nav>
+
+
+
+
+
+
+  
+    <div class="duoshuo"></div>
   
 
-    
-    <nav id="page-nav">
-      <span class="page-number current">1</span><a class="page-number" href="/archives/page/2/">2</a><a class="extend next" rel="next" href="/archives/page/2/">Next &raquo;</a>
-    </nav>
-  
+
 
 
           </div>
@@ -551,8 +300,8 @@
 	var yiliaConfig = {
 		mathjax: true,
 		isHome: false,
-		isPost: false,
-		isArchive: true,
+		isPost: true,
+		isArchive: false,
 		isTag: false,
 		isCategory: false,
 		open_in_new: false,
