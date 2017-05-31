@@ -15,7 +15,7 @@
 <meta property="og:site_name" content="Hexo">
 <meta property="og:description" content="本文章针对数据库小白而写，同时请数据库大神给本文章指点不好之处和需改进的地方，欢迎关注我的微信公众号：程序伯乐。">
 <meta property="og:image" content="https://inforoots.github.io/\img\City-Province.png">
-<meta property="og:updated_time" content="2017-05-31T06:40:50.762Z">
+<meta property="og:updated_time" content="2017-05-31T07:41:58.148Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="带你走进MySQL常用命令世界">
 <meta name="twitter:description" content="本文章针对数据库小白而写，同时请数据库大神给本文章指点不好之处和需改进的地方，欢迎关注我的微信公众号：程序伯乐。">
@@ -234,7 +234,7 @@
 <h3 id="5、删除表中数据"><a href="#5、删除表中数据" class="headerlink" title="5、删除表中数据"></a>5、删除表中数据</h3><h4 id="删除表的数据之前，要先确认条件是否是唯一的。以免删除不该删除的数据，造成不可挽回的损失"><a href="#删除表的数据之前，要先确认条件是否是唯一的。以免删除不该删除的数据，造成不可挽回的损失" class="headerlink" title="删除表的数据之前，要先确认条件是否是唯一的。以免删除不该删除的数据，造成不可挽回的损失"></a>删除表的数据之前，要先确认条件是否是唯一的。以免删除不该删除的数据，造成不可挽回的损失</h4>  <figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">delete from banner  <span class="built_in">where</span> <span class="string">'name'</span> = <span class="string">'首页'</span></div></pre></td></tr></table></figure>
 <h2 id="三-、实战语句，关于地址的SQL语句"><a href="#三-、实战语句，关于地址的SQL语句" class="headerlink" title="三 、实战语句，关于地址的SQL语句"></a>三 、实战语句，关于地址的SQL语句</h2><h3 id="有两张表是City-和-Province-，-分别是城市与省份的关系表"><a href="#有两张表是City-和-Province-，-分别是城市与省份的关系表" class="headerlink" title="有两张表是City 和 Province ， 分别是城市与省份的关系表"></a>有两张表是City 和 Province ， 分别是城市与省份的关系表</h3><p>  <img src="\img\City-Province.png" alt=""></p>
 <h3 id="题目一、写一条sql语句关系两张表，实现：显示城市的基本信息，显示字段：城市ID-，城市名-，所属省份？"><a href="#题目一、写一条sql语句关系两张表，实现：显示城市的基本信息，显示字段：城市ID-，城市名-，所属省份？" class="headerlink" title="题目一、写一条sql语句关系两张表，实现：显示城市的基本信息，显示字段：城市ID ，城市名 ，所属省份？"></a>题目一、写一条sql语句关系两张表，实现：显示城市的基本信息，显示字段：城市ID ，城市名 ，所属省份？</h3>  <figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">SELECT c.id AS id , c.city AS cityname , p.province FROM city c LEFI JOIN province p ON c.province = p.id</div></pre></td></tr></table></figure>
-<h3 id="题目二、写一条sql语句关系两张表，实现：显示城市的基本信息，显示字段：城市ID-，城市名-，所属省份？"><a href="#题目二、写一条sql语句关系两张表，实现：显示城市的基本信息，显示字段：城市ID-，城市名-，所属省份？" class="headerlink" title="题目二、写一条sql语句关系两张表，实现：显示城市的基本信息，显示字段：城市ID ，城市名 ，所属省份？"></a>题目二、写一条sql语句关系两张表，实现：显示城市的基本信息，显示字段：城市ID ，城市名 ，所属省份？</h3>  <figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">SELECT p.id , p.province , count(c.id) FROM province p LEFI JOIN city c ON p.id = c.provinceid GROUP BY p.id</div></pre></td></tr></table></figure>
+<h3 id="题目二、如果要统计每个省份有多少城市，显示字段：省份ID、省份名、包含多少个城市？"><a href="#题目二、如果要统计每个省份有多少城市，显示字段：省份ID、省份名、包含多少个城市？" class="headerlink" title="题目二、如果要统计每个省份有多少城市，显示字段：省份ID、省份名、包含多少个城市？"></a>题目二、如果要统计每个省份有多少城市，显示字段：省份ID、省份名、包含多少个城市？</h3>  <figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">SELECT p.id , p.province , count(c.id) FROM province p LEFI JOIN city c ON p.id = c.provinceid GROUP BY p.id</div></pre></td></tr></table></figure>
 <p>如果这篇文章对你有帮助，请帮作者点个Star,<a href="https://github.com/InfoRoots/InfoRoots.github.io" target="_blank" rel="external">GitHub地址</a></p>
 
       
@@ -442,19 +442,7 @@ MathJax.Hub.Queue(function() {
           <ul class="article-tag-list" q-show="showTags">
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">GitHub</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">MySQL</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color1">Linux</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">PHP</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -462,7 +450,19 @@ MathJax.Hub.Queue(function() {
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">MySQL</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">PHP</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color4">ThinkPHP</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color2">GitHub</a>
               </li>
              
               <li class="article-tag-list-item">
