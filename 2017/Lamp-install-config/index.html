@@ -21,7 +21,7 @@
 <meta property="og:image" content="https://inforoots.github.io/img/httpd_run_error.png">
 <meta property="og:image" content="https://inforoots.github.io/\img\php-fpm.png">
 <meta property="og:image" content="https://inforoots.github.io/\img\line125.png">
-<meta property="og:updated_time" content="2017-05-31T06:41:09.309Z">
+<meta property="og:updated_time" content="2017-06-07T01:43:03.195Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Centos7安装Apache、php、Nginx、Mysql">
 <meta name="twitter:description" content="本文根据小编在项目中开发的过程详解，不好之处，还请多多指点，欢迎关注我的微信公众号：程序伯乐。">
@@ -172,12 +172,14 @@
 <h4 id="6、安装PCRE"><a href="#6、安装PCRE" class="headerlink" title="6、安装PCRE"></a>6、安装PCRE</h4><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">下载PCRE: wget ftp://ftp.csx.cam.ac.uk/pub/software/programming/pcre/pcre-8.39.tar.gz</div><div class="line">解压PCRE: tar -zxvf pcre-8.39.tar.gz</div><div class="line">进入PCRE目录： <span class="built_in">cd</span> pcre-8.39</div><div class="line">配置PCRE： ./configure - -prefix=/usr/<span class="built_in">local</span>/pcre</div><div class="line">编译PCRE: make</div><div class="line">安装PCRE: make install</div></pre></td></tr></table></figure>
 <h4 id="7、配置Apache"><a href="#7、配置Apache" class="headerlink" title="7、配置Apache"></a>7、配置Apache</h4><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">进入Apache目录：<span class="built_in">cd</span> httpd-2.4.25</div><div class="line">配置Apache：./configure - -prefix=/usr/<span class="built_in">local</span>/apache2 - -with-pcre=/usr/<span class="built_in">local</span>/pcre/bin/pcre-config - -with-included-apr</div><div class="line">编译Apache：make</div><div class="line">安装Apache：make install</div></pre></td></tr></table></figure>
 <h4 id="8、测试Apache是否成功"><a href="#8、测试Apache是否成功" class="headerlink" title="8、测试Apache是否成功"></a>8、测试Apache是否成功</h4><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">进入Apache的bin目录：<span class="built_in">cd</span> /usr/<span class="built_in">local</span>/apache2/bin/</div><div class="line">开启Apache：./apachectl -k start</div></pre></td></tr></table></figure>
-<h4 id="9、常见的错误"><a href="#9、常见的错误" class="headerlink" title="9、常见的错误"></a>9、常见的错误</h4><p>9-1、如果访问网站失败，请检查能否ping通外网，如果不能请按照如下配置</p>
+<h4 id="9、配置Apache支持PHP"><a href="#9、配置Apache支持PHP" class="headerlink" title="9、配置Apache支持PHP"></a>9、配置Apache支持PHP</h4><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">找到</div><div class="line">  AddType application/x-compress .Z</div><div class="line">  AddType application/x-gzip .gz .tgz</div><div class="line">其下添加</div><div class="line">  AddType application/x-httpd-php .php</div></pre></td></tr></table></figure>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">添加index.php</div><div class="line">&lt;IfModule dir_module&gt;</div><div class="line">  DirectoryIndex index.html index.php</div><div class="line">&lt;/IfModule&gt;</div></pre></td></tr></table></figure>
+<h4 id="10、常见的错误"><a href="#10、常见的错误" class="headerlink" title="10、常见的错误"></a>10、常见的错误</h4><p>10-1、如果访问网站失败，请检查能否ping通外网，如果不能请按照如下配置</p>
 <p>进入网关配置文件：vi /etc/sysconfig/network-scripts/ifcfg-ens32<br>配置如下图:<br><img src="/img/sysconfig.png" alt=""><br>重启网络服务：systemctl restart network.service<br>检查IP：ip addr</p>
-<p>9-2、如果ping通外网，那就是80端口被禁止了</p>
+<p>10-2、如果ping通外网，那就是80端口被禁止了</p>
 <p>允许80端口命令：firewall-cmd - -zone=public - -add-port=80/tcp - -permanent,出现下图的success表示成功，下图的警告是说我已经允许过80端口了<br><img src="/img/tcp-success.png" alt=""><br>重启网络服务：systemctl restart network.service</p>
-<p>9-3、如果出现以下图片的提示，请安装gcc-c++扩展,安装命令：yum install gcc-c++<br><img src="/img/gcc.png" alt=""></p>
-<p>9-4、启动Apache时如果发生下图红圈的错误，在Apache/conf/httpd.conf配置文件加上 “ServerName localhost：80”<br><img src="/img/httpd_run_error.png" alt=""></p>
+<p>10-3、如果出现以下图片的提示，请安装gcc-c++扩展,安装命令：yum install gcc-c++<br><img src="/img/gcc.png" alt=""></p>
+<p>10-4、启动Apache时如果发生下图红圈的错误，在Apache/conf/httpd.conf配置文件加上 “ServerName localhost：80”<br><img src="/img/httpd_run_error.png" alt=""></p>
 <h2 id="PHP安装配置"><a href="#PHP安装配置" class="headerlink" title="PHP安装配置"></a>PHP安装配置</h2><h4 id="先安装curl扩展"><a href="#先安装curl扩展" class="headerlink" title="先安装curl扩展"></a>先安装curl扩展</h4><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">wget http://ojt8x896o.bkt.clouddn.com/curl-7.52.1.tar.gz</div><div class="line">tar -zxvf curl-7.52.1.tar.gz</div><div class="line"><span class="built_in">cd</span> curl-7.52.1</div><div class="line">./configure --prefix=/usr/<span class="built_in">local</span>/curl</div><div class="line">make &amp;&amp; make install</div></pre></td></tr></table></figure>
 <h4 id="下载并解压php"><a href="#下载并解压php" class="headerlink" title="下载并解压php"></a>下载并解压php</h4><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">wget http://hk1.php.net/get/php-5.6.29.tar.gz/from/this/mirror -O php-5.6.29.tar.gz</div><div class="line">tar -zxvf php-5.6.29.tar.gz</div><div class="line"><span class="built_in">cd</span> php-5.6.29.tar.gz</div></pre></td></tr></table></figure>
 <h4 id="安装依赖"><a href="#安装依赖" class="headerlink" title="安装依赖"></a>安装依赖</h4><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">yum install openssl openssl-devel bzip2-devel libxslt libxslt-devel libmcrypt libmcrypt-devel libxml2 libxml2-devel autoconf libjpeg libjpeg-devel libpng libpng-devel freetype freetype-devel  zlib zlib-devel glibc glibc-devel glib2 glib2-devel</div></pre></td></tr></table></figure>
@@ -425,11 +427,11 @@ MathJax.Hub.Queue(function() {
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">MySQL</a>
+                <a href="javascript:void(0)" class="js-tag color1">Linux</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">Linux</a>
+                <a href="javascript:void(0)" class="js-tag color1">MySQL</a>
               </li>
              
               <li class="article-tag-list-item">
