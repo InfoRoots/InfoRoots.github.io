@@ -11,10 +11,10 @@
   <meta name="description" content="本文根据小编在项目中开发的过程详解，不好之处，还请多多指点，欢迎关注我的微信公众号：程序伯乐。">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Apache和Nginx下的Rewrite规则">
-<meta property="og:url" content="https://inforoots.github.io/2017/linux_nginx_htaccess/index.html">
+<meta property="og:url" content="https://inforoots.github.io/2017/Apache_Nginx_Rewrite_Rule/index.html">
 <meta property="og:site_name" content="Hexo">
 <meta property="og:description" content="本文根据小编在项目中开发的过程详解，不好之处，还请多多指点，欢迎关注我的微信公众号：程序伯乐。">
-<meta property="og:updated_time" content="2017-05-31T06:41:02.927Z">
+<meta property="og:updated_time" content="2017-06-07T02:35:03.599Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Apache和Nginx下的Rewrite规则">
 <meta name="twitter:description" content="本文根据小编在项目中开发的过程详解，不好之处，还请多多指点，欢迎关注我的微信公众号：程序伯乐。">
@@ -133,7 +133,7 @@
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            <article id="post-linux_nginx_htaccess" class="article article-type-post " itemscope itemprop="blogPost">
+            <article id="post-Apache_Nginx_Rewrite_Rule" class="article article-type-post " itemscope itemprop="blogPost">
   <div class="article-inner">
     
       <header class="article-header">
@@ -145,7 +145,7 @@
   
 
         
-        <a href="/2017/linux_nginx_htaccess/" class="archive-article-date">
+        <a href="/2017/Apache_Nginx_Rewrite_Rule/" class="archive-article-date">
   	<time datetime="2017-05-17T16:00:00.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-05-18</time>
 </a>
         
@@ -158,7 +158,7 @@
 <p>.htaccess的内容如下：<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line"><span class="comment"># BEGIN WordPress</span></div><div class="line"></div><div class="line">RewriteEngine On</div><div class="line">RewriteBase /</div><div class="line">RewriteCond %&#123;REQUEST_FILENAME&#125; !<span class="_">-f</span></div><div class="line">RewriteCond %&#123;REQUEST_FILENAME&#125; !<span class="_">-d</span></div><div class="line">RewriteRule . /index.php [L]</div><div class="line"></div><div class="line"><span class="comment"># END WordPress</span></div></pre></td></tr></table></figure></p>
 <h2 id="Nginx"><a href="#Nginx" class="headerlink" title="Nginx"></a>Nginx</h2><p>在Nginx下配置Rewrite还是比较简单的，在location /{………………}里面加入<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">if</span> (!<span class="_">-e</span> <span class="variable">$request_filename</span>)&#123;</div><div class="line">rewrite (.*) /index.php;</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
 <p>即可实现。<br>下面是一个完整的vhost的配置文件<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div></pre></td><td class="code"><pre><div class="line">server &#123;</div><div class="line">listen 80;</div><div class="line">server_name chinaz.com down.chinaz.com;</div><div class="line">location / &#123;</div><div class="line">        index index.html index.htm index.php;</div><div class="line">        root /www/wwwroot/chinaz.com;</div><div class="line">        <span class="keyword">if</span> (<span class="_">-f</span> <span class="variable">$request_filename</span>/index.html)&#123;</div><div class="line">                rewrite (.*) <span class="variable">$1</span>/index.html <span class="built_in">break</span>;</div><div class="line">        &#125;</div><div class="line">        <span class="keyword">if</span> (<span class="_">-f</span> <span class="variable">$request_filename</span>/index.php)&#123;</div><div class="line">                rewrite (.*) <span class="variable">$1</span>/index.php;</div><div class="line">        &#125;</div><div class="line">        <span class="keyword">if</span> (!<span class="_">-f</span> <span class="variable">$request_filename</span>)&#123;</div><div class="line">                rewrite (.*) /index.php;</div><div class="line">        &#125;</div><div class="line"></div><div class="line">&#125;</div><div class="line">location ~ \.php$ &#123;</div><div class="line">        include fastcgi_params;</div><div class="line">        fastcgi_index index.php;</div><div class="line">        fastcgi_pass 127.0.0.1:8787;</div><div class="line">        fastcgi_param SCRIPT_FILENAME /www/wwwroot/chinaz.com<span class="variable">$fastcgi_script_name</span>;</div><div class="line">        &#125;</div><div class="line">location /ccvita-status &#123;</div><div class="line">        stub_status on;</div><div class="line">        access_log off;</div><div class="line">        &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
-<h2 id="最后重启Apache和Nginx就可以了-小编是在Linux配置的"><a href="#最后重启Apache和Nginx就可以了-小编是在Linux配置的" class="headerlink" title="最后重启Apache和Nginx就可以了,小编是在Linux配置的"></a>最后重启Apache和Nginx就可以了,小编是在Linux配置的</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">//Apache</div><div class="line">./apachectl -k start</div><div class="line"></div><div class="line">//Nginx</div><div class="line">./nginx</div></pre></td></tr></table></figure>
+<h2 id="最后重启Apache和Nginx就可以了-小编是在Linux配置的"><a href="#最后重启Apache和Nginx就可以了-小编是在Linux配置的" class="headerlink" title="最后重启Apache和Nginx就可以了,小编是在Linux配置的"></a>最后重启Apache和Nginx就可以了,小编是在Linux配置的</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line"><span class="comment">#Apache</span></div><div class="line">./apachectl -k start</div><div class="line"></div><div class="line"><span class="comment">#Nginx</span></div><div class="line">./nginx</div></pre></td></tr></table></figure>
 <p>如果这篇文章对你有帮助，请帮作者点个Star,<a href="https://github.com/InfoRoots/InfoRoots.github.io" target="_blank" rel="external">GitHub地址</a></p>
 
       
@@ -229,7 +229,7 @@
     <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
     <p>扫一扫，分享到微信</p>
     <div class="wx-qrcode">
-      <img src="http://s.jiathis.com/qrcode.php?url=https://inforoots.github.io/2017/linux_nginx_htaccess/" alt="微信分享二维码">
+      <img src="http://s.jiathis.com/qrcode.php?url=https://inforoots.github.io/2017/Apache_Nginx_Rewrite_Rule/" alt="微信分享二维码">
     </div>
 </div>
 
@@ -375,7 +375,11 @@ MathJax.Hub.Queue(function() {
           <ul class="article-tag-list" q-show="showTags">
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">GitHub</a>
+                <a href="javascript:void(0)" class="js-tag color1">Other</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">Linux</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -383,7 +387,7 @@ MathJax.Hub.Queue(function() {
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">Linux</a>
+                <a href="javascript:void(0)" class="js-tag color2">GitHub</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -392,10 +396,6 @@ MathJax.Hub.Queue(function() {
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color4">PHP</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">Other</a>
               </li>
              
               <li class="article-tag-list-item">

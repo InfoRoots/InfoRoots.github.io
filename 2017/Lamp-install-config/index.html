@@ -21,7 +21,7 @@
 <meta property="og:image" content="https://inforoots.github.io/img/httpd_run_error.png">
 <meta property="og:image" content="https://inforoots.github.io/\img\php-fpm.png">
 <meta property="og:image" content="https://inforoots.github.io/\img\line125.png">
-<meta property="og:updated_time" content="2017-06-07T01:43:03.195Z">
+<meta property="og:updated_time" content="2017-06-07T02:38:07.465Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Centos7安装Apache、php、Nginx、Mysql">
 <meta name="twitter:description" content="本文根据小编在项目中开发的过程详解，不好之处，还请多多指点，欢迎关注我的微信公众号：程序伯乐。">
@@ -162,7 +162,7 @@
     <div class="article-entry" itemprop="articleBody">
       
         <p>本文根据小编在项目中开发的过程详解，不好之处，还请多多指点，欢迎关注我的微信公众号：程序伯乐。<br><a id="more"></a></p>
-<h2 id="安装命令"><a href="#安装命令" class="headerlink" title="安装命令"></a>安装命令</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">//wget是一个从网络上自动下载文件的自由工具，支持通过HTTP、HTTPS、FTP三个最常见的TCP/IP协议下载</div><div class="line">yum install wget</div><div class="line">//Vim是一个类似于Vi的著名的功能强大、高度可定制的文本编辑器</div><div class="line">yum install vim</div></pre></td></tr></table></figure>
+<h2 id="安装命令"><a href="#安装命令" class="headerlink" title="安装命令"></a>安装命令</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"><span class="comment">#wget是一个从网络上自动下载文件的自由工具，支持通过HTTP、HTTPS、FTP三个最常见的TCP/IP协议下载</span></div><div class="line">yum install wget</div><div class="line"><span class="comment">#Vim是一个类似于Vi的著名的功能强大、高度可定制的文本编辑器</span></div><div class="line">yum install vim</div></pre></td></tr></table></figure>
 <h2 id="安装Apache"><a href="#安装Apache" class="headerlink" title="安装Apache"></a>安装Apache</h2><h4 id="1、下载Apache："><a href="#1、下载Apache：" class="headerlink" title="1、下载Apache："></a>1、下载Apache：</h4><p> wget <a href="http://mirrors.tuna.tsinghua.edu.cn/apache//httpd/httpd-2.4.25.tar.gz" target="_blank" rel="external">http://mirrors.tuna.tsinghua.edu.cn/apache//httpd/httpd-2.4.25.tar.gz</a></p>
 <p><img src="/img/apache.png" alt=""></p>
 <h4 id="2、解压文件："><a href="#2、解压文件：" class="headerlink" title="2、解压文件："></a>2、解压文件：</h4><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">tar -zxvf httpd-2.4.25.tar.gz</div></pre></td></tr></table></figure>
@@ -419,7 +419,11 @@ MathJax.Hub.Queue(function() {
           <ul class="article-tag-list" q-show="showTags">
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">GitHub</a>
+                <a href="javascript:void(0)" class="js-tag color1">Other</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">Linux</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -427,7 +431,7 @@ MathJax.Hub.Queue(function() {
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">Linux</a>
+                <a href="javascript:void(0)" class="js-tag color2">GitHub</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -436,10 +440,6 @@ MathJax.Hub.Queue(function() {
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color4">PHP</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">Other</a>
               </li>
              
               <li class="article-tag-list-item">
