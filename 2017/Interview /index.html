@@ -6,20 +6,18 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <link rel="dns-prefetch" href="https://inforoots.github.io">
-  <title>带你走进MySQL常用命令世界 | 程序伯乐</title>
+  <title>总结一下小编我去面试时遇到的那些题目 | 程序伯乐</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="本文章针对数据库小白而写，同时请数据库大神给本文章指点不好之处和需改进的地方，欢迎关注我的微信公众号：程序伯乐。">
+  <meta name="description" content="面试的题目会慢慢的更新，可以关注我的微信公众号：程序伯乐 来获取最新的动态">
 <meta property="og:type" content="article">
-<meta property="og:title" content="带你走进MySQL常用命令世界">
-<meta property="og:url" content="https://inforoots.github.io/2017/MySQL_Common/index.html">
+<meta property="og:title" content="总结一下小编我去面试时遇到的那些题目">
+<meta property="og:url" content="https://inforoots.github.io/2017/Interview /index.html">
 <meta property="og:site_name" content="程序伯乐">
-<meta property="og:description" content="本文章针对数据库小白而写，同时请数据库大神给本文章指点不好之处和需改进的地方，欢迎关注我的微信公众号：程序伯乐。">
-<meta property="og:image" content="https://inforoots.github.io/\img\City-Province.png">
-<meta property="og:updated_time" content="2017-06-01T03:12:17.496Z">
+<meta property="og:description" content="面试的题目会慢慢的更新，可以关注我的微信公众号：程序伯乐 来获取最新的动态">
+<meta property="og:updated_time" content="2017-06-14T06:03:47.542Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="带你走进MySQL常用命令世界">
-<meta name="twitter:description" content="本文章针对数据库小白而写，同时请数据库大神给本文章指点不好之处和需改进的地方，欢迎关注我的微信公众号：程序伯乐。">
-<meta name="twitter:image" content="https://inforoots.github.io/\img\City-Province.png">
+<meta name="twitter:title" content="总结一下小编我去面试时遇到的那些题目">
+<meta name="twitter:description" content="面试的题目会慢慢的更新，可以关注我的微信公众号：程序伯乐 来获取最新的动态">
   
     <link rel="alternative" href="/atom.xml" title="程序伯乐" type="application/atom+xml">
   
@@ -135,119 +133,34 @@
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            <article id="post-MySQL_Common" class="article article-type-post " itemscope itemprop="blogPost">
+            <article id="post-Interview " class="article article-type-post " itemscope itemprop="blogPost">
   <div class="article-inner">
     
       <header class="article-header">
         
   
     <h1 class="article-title" itemprop="name">
-      带你走进MySQL常用命令世界
+      总结一下小编我去面试时遇到的那些题目
     </h1>
   
 
         
-        <a href="/2017/MySQL_Common/" class="archive-article-date">
-  	<time datetime="2017-05-25T16:00:00.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-05-26</time>
+        <a href="/2017/Interview /" class="archive-article-date">
+  	<time datetime="2017-06-13T16:00:00.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-06-14</time>
 </a>
         
       </header>
     
     <div class="article-entry" itemprop="articleBody">
       
-        <p>本文章针对数据库小白而写，同时请数据库大神给本文章指点不好之处和需改进的地方，欢迎关注我的微信公众号：程序伯乐。<br><a id="more"></a></p>
-<h2 id="一-、常用命令"><a href="#一-、常用命令" class="headerlink" title="一 、常用命令"></a>一 、常用命令</h2><table>
-<thead>
-<tr>
-<th>命令</th>
-<th>描述 </th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td> mysql -uroot -p</td>
-<td>连接数据库</td>
-</tr>
-<tr>
-<td> show databases</td>
-<td>输出所有的数据库 </td>
-</tr>
-<tr>
-<td> source &lt;数据库文件路径&gt;</td>
-<td>导入sql文件</td>
-</tr>
-<tr>
-<td> use &lt;数据库名&gt;</td>
-<td>通俗点讲就是使用数据库</td>
-</tr>
-<tr>
-<td> create table &lt;表名&gt;</td>
-<td>创建数据库表</td>
-</tr>
-<tr>
-<td> rename table &lt;原表名&gt; to &lt;新表名&gt;</td>
-<td>修改表名</td>
-</tr>
-<tr>
-<td> desc &lt;表名&gt;</td>
-<td>查询数据库表的结构</td>
-</tr>
-<tr>
-<td> show tables</td>
-<td>输出数据库的所有表</td>
-</tr>
-<tr>
-<td> show create table &lt;表名&gt;</td>
-<td>获取表的创建语句</td>
-</tr>
-<tr>
-<td> select name from 表名 where 条件</td>
-<td>查询数据</td>
-</tr>
-<tr>
-<td> insert into &lt;表面&gt;(字段名) values(值)</td>
-<td>插入数据</td>
-</tr>
-<tr>
-<td> update &lt;表名&gt; set 列名=值 where 条件</td>
-<td>修改语句</td>
-</tr>
-<tr>
-<td> delete from &lt;表名&gt; where 条件</td>
-<td>删除表中符合条件的值</td>
-</tr>
-<tr>
-<td> drop table if exists &lt;表名&gt;</td>
-<td>删除表</td>
-</tr>
-<tr>
-<td> drop database if exists &lt;数据库名&gt;</td>
-<td>删除数据库 </td>
-</tr>
-<tr>
-<td> left join(左联接)</td>
-<td>返回包括左表中的所有记录和右表中联结字段相等的记录 </td>
-</tr>
-<tr>
-<td> right join(右联接)</td>
-<td>返回包括右表中的所有记录和左表中联结字段相等的记录</td>
-</tr>
-<tr>
-<td> inner join(等值连接)</td>
-<td>只返回两个表中联结字段相等的行</td>
-</tr>
-</tbody>
-</table>
-<h2 id="二-、实例演示（演示一些包含条件和参数的SQL语句）"><a href="#二-、实例演示（演示一些包含条件和参数的SQL语句）" class="headerlink" title="二 、实例演示（演示一些包含条件和参数的SQL语句）"></a>二 、实例演示（演示一些包含条件和参数的SQL语句）</h2><h3 id="1、创建一个zerg的数据库"><a href="#1、创建一个zerg的数据库" class="headerlink" title="1、创建一个zerg的数据库"></a>1、创建一个zerg的数据库</h3> <figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">create database zerg;</div></pre></td></tr></table></figure>
-<h3 id="2、创建一个banner数据库表"><a href="#2、创建一个banner数据库表" class="headerlink" title="2、创建一个banner数据库表"></a>2、创建一个banner数据库表</h3> <figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line">use zerg</div><div class="line">drop table <span class="keyword">if</span> exists banner</div><div class="line">CREATE TABLE `banner` (</div><div class="line">  `id` int(11) NOT NULL AUTO_INCREMENT,</div><div class="line">  `name` varchar(50) DEFAULT NULL COMMENT <span class="string">'Banner名称，通常作为标识'</span>,</div><div class="line">  `description` varchar(255) DEFAULT NULL COMMENT <span class="string">'Banner描述'</span>,</div><div class="line">  `delete_time` int(11) DEFAULT NULL,</div><div class="line">  `update_time` int(11) DEFAULT NULL,</div><div class="line">  PRIMARY KEY (`id`)</div><div class="line">) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb4 COMMENT=<span class="string">'banner管理表'</span></div></pre></td></tr></table></figure>
-<h3 id="3、为banner表插入一条数据"><a href="#3、为banner表插入一条数据" class="headerlink" title="3、为banner表插入一条数据"></a>3、为banner表插入一条数据</h3>  <figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">insert into banner(name,description) values(<span class="string">'首页置顶'</span>,<span class="string">'首页轮播图'</span>);</div></pre></td></tr></table></figure>
-<p>  注：这里我解释一下为什么我只给其中两个赋值。id 在创建表的时候给它设置了AUTO_INCREMENT，每当有新的数据它为自动增加。而 ‘delete_time’ 和 ‘update_time’ 字段设置了DEFAULT NULL，所以也可以不用录入，并且这两个字符类型 int(11), 说明在业务代码开发会以时间戳的方式录入数据。</p>
-<h3 id="4、修改表的字段name的值"><a href="#4、修改表的字段name的值" class="headerlink" title="4、修改表的字段name的值"></a>4、修改表的字段name的值</h3>  <figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">update banner <span class="built_in">set</span> <span class="string">'name'</span> = <span class="string">'首页'</span> <span class="built_in">where</span> id=<span class="string">'1'</span></div></pre></td></tr></table></figure>
-<h3 id="5、删除表中数据"><a href="#5、删除表中数据" class="headerlink" title="5、删除表中数据"></a>5、删除表中数据</h3><h4 id="删除表的数据之前，要先确认条件是否是唯一的。以免删除不该删除的数据，造成不可挽回的损失"><a href="#删除表的数据之前，要先确认条件是否是唯一的。以免删除不该删除的数据，造成不可挽回的损失" class="headerlink" title="删除表的数据之前，要先确认条件是否是唯一的。以免删除不该删除的数据，造成不可挽回的损失"></a>删除表的数据之前，要先确认条件是否是唯一的。以免删除不该删除的数据，造成不可挽回的损失</h4>  <figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">delete from banner  <span class="built_in">where</span> <span class="string">'name'</span> = <span class="string">'首页'</span></div></pre></td></tr></table></figure>
-<h2 id="三-、实战语句，关于地址的SQL语句"><a href="#三-、实战语句，关于地址的SQL语句" class="headerlink" title="三 、实战语句，关于地址的SQL语句"></a>三 、实战语句，关于地址的SQL语句</h2><h3 id="有两张表是City-和-Province-，-分别是城市与省份的关系表"><a href="#有两张表是City-和-Province-，-分别是城市与省份的关系表" class="headerlink" title="有两张表是City 和 Province ， 分别是城市与省份的关系表"></a>有两张表是City 和 Province ， 分别是城市与省份的关系表</h3><p>  <img src="\img\City-Province.png" alt=""></p>
-<h3 id="题目一、写一条sql语句关系两张表，实现：显示城市的基本信息，显示字段：城市ID-，城市名-，所属省份？"><a href="#题目一、写一条sql语句关系两张表，实现：显示城市的基本信息，显示字段：城市ID-，城市名-，所属省份？" class="headerlink" title="题目一、写一条sql语句关系两张表，实现：显示城市的基本信息，显示字段：城市ID ，城市名 ，所属省份？"></a>题目一、写一条sql语句关系两张表，实现：显示城市的基本信息，显示字段：城市ID ，城市名 ，所属省份？</h3>  <figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">SELECT c.id AS id , c.city AS cityname , p.province FROM city c LEFI JOIN province p ON c.province = p.id</div></pre></td></tr></table></figure>
-<h3 id="题目二、如果要统计每个省份有多少城市，显示字段：省份ID、省份名、包含多少个城市？"><a href="#题目二、如果要统计每个省份有多少城市，显示字段：省份ID、省份名、包含多少个城市？" class="headerlink" title="题目二、如果要统计每个省份有多少城市，显示字段：省份ID、省份名、包含多少个城市？"></a>题目二、如果要统计每个省份有多少城市，显示字段：省份ID、省份名、包含多少个城市？</h3>  <figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">SELECT p.id , p.province , count(c.id) FROM province p LEFI JOIN city c ON p.id = c.provinceid GROUP BY p.id</div></pre></td></tr></table></figure>
-<p>如果这篇文章对你有帮助，请帮作者点个Star,<a href="https://github.com/InfoRoots/InfoRoots.github.io" target="_blank" rel="external">GitHub地址</a></p>
+        <p>面试的题目会慢慢的更新，可以关注我的微信公众号：程序伯乐 来获取最新的动态<br><a id="more"></a></p>
+<h2 id="一、面试官提的问题"><a href="#一、面试官提的问题" class="headerlink" title="一、面试官提的问题"></a>一、面试官提的问题</h2><h3 id="1、你知不知道什么是消息队列？"><a href="#1、你知不知道什么是消息队列？" class="headerlink" title="1、你知不知道什么是消息队列？"></a>1、你知不知道什么是消息队列？</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">个人认为消息队列的主要特点是异步处理，主要目的是减少请求响应时间和解耦。所以主要的使用场景就是将比较耗时而且不需要即时（同步）返回结果的操作作为消息放入消息队列。同时由于使用了消息队列，只要保证消息格式不变，消息的发送方和接收方并不需要彼此联系，也不需要受对方的影响，即解耦和。</div></pre></td></tr></table></figure>
+<h3 id="2、你熟不熟悉memcached，redis？说说你的理解"><a href="#2、你熟不熟悉memcached，redis？说说你的理解" class="headerlink" title="2、你熟不熟悉memcached，redis？说说你的理解"></a>2、你熟不熟悉memcached，redis？说说你的理解</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line">1、Redis 和 Memcache 都是将数据存放在内存中，都是内存数据库。不过memcache还可用于缓存其他东西。例如图片、视频等等。</div><div class="line">2、Redis不仅仅支持简单的键值类型的数据，同时还提供list、<span class="built_in">set</span>、<span class="built_in">hash</span>等结构的存储。</div><div class="line">3、虚拟内存 -- Redis当物理内存用完时，可以将一些很久没用的value 交换到磁盘。</div><div class="line">4、过期策略 -- Memcache在<span class="built_in">set</span>时就指定，例如<span class="built_in">set</span> key1 0 0 8，即永不过期。Redis可以通过例如expire设定。例如expire name 10；</div><div class="line">5、分布式 -- 设定Memcache集群，利用magent做一主多从；Redis也可以做一主多从。</div><div class="line">6、存储数据安全 -- Memcache挂掉后，数据没了；Redis可以定期保存到磁盘（持久化）。</div><div class="line">7、灾难恢复 -- Memcache挂掉后，数据不可恢复；Redis数据丢失后可以通过aof恢复。</div><div class="line">8、Redis支持数据的备份，即master-slave模式的数据备份。</div><div class="line">9、应用场景不一样：</div><div class="line">   Redis作为NoSQL数据库使用外，还能用做消息队列、数据堆栈和数据缓存等；</div><div class="line">   Memcache适合于缓存SQL语句、数据集、用户临时性数据、延迟查询数据和SESSION等。</div></pre></td></tr></table></figure>
+<h3 id="3、你遇过PHP7的哪些坑"><a href="#3、你遇过PHP7的哪些坑" class="headerlink" title="3、你遇过PHP7的哪些坑"></a>3、你遇过PHP7的哪些坑</h3><h4 id="第一种情况：扩展的变化"><a href="#第一种情况：扩展的变化" class="headerlink" title="第一种情况：扩展的变化"></a>第一种情况：扩展的变化</h4><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"></div><div class="line">1、不支持mysql扩展，改用mysqli</div><div class="line">2. 不支持memcache扩展，改用memcached</div><div class="line">3. 不支持mongo扩展，改用mongodb扩展</div></pre></td></tr></table></figure>
+<h4 id="第二种情况：语法检查变化"><a href="#第二种情况：语法检查变化" class="headerlink" title="第二种情况：语法检查变化"></a>第二种情况：语法检查变化</h4><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div></pre></td><td class="code"><pre><div class="line">php7某种情况自动类型转换会出问题</div><div class="line"></div><div class="line"><span class="variable">$pids</span> = <span class="string">''</span>;</div><div class="line"><span class="variable">$pids</span>[] = array();</div><div class="line">使用[]操作，出现Fatal error</div><div class="line"></div><div class="line">PHP Fatal error:  Uncaught Error: [] operator not supported <span class="keyword">for</span> strings</div><div class="line">函数定义这里php7的参数校验和5.6有差异</div><div class="line"></div><div class="line"><span class="keyword">function</span> a(<span class="variable">$param1</span>, <span class="variable">$param2</span>, <span class="variable">$param1</span> = array())&#123;&#125;</div><div class="line">这样的方式php5.6不会报错,7会报fatal error.</div><div class="line"></div><div class="line">PHP Fatal error:  Redefinition of parameter <span class="variable">$param1</span> <span class="keyword">in</span></div><div class="line">以数组的形式给字符串赋值，会报错</div><div class="line"></div><div class="line">PHP Warning:  Cannot assign an empty string to a string offset</div></pre></td></tr></table></figure>
+<h4 id="第三种情况：部分函数被弃用或调用方式调整"><a href="#第三种情况：部分函数被弃用或调用方式调整" class="headerlink" title="第三种情况：部分函数被弃用或调用方式调整"></a>第三种情况：部分函数被弃用或调用方式调整</h4><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line">正则匹配preg_replace 函数的 e 修饰符功能在php7被弃用（其他修饰符模式，正常使用），需要回调执行，则用preg_replace_callback来替代</div><div class="line"></div><div class="line">例子：将__TABLE_NAME__这样的字符串替换成正规的表名，并且带上前缀</div><div class="line"><span class="variable">$joinStr</span> = preg_replace(<span class="string">"/__([A-Z_-]+)__/e"</span>,<span class="variable">$prex</span>.<span class="string">".strtolower('<span class="variable">$1</span>')"</span>,<span class="variable">$joinStr</span>);</div><div class="line">//替换为</div><div class="line">preg_replace_callback(<span class="string">"/__([A-Z_-]+)__/"</span>,<span class="keyword">function</span>(<span class="variable">$r</span>) use (&amp;amp;<span class="variable">$joinStr</span>)&#123;</div><div class="line">    <span class="variable">$joinStr</span> = <span class="variable">$prex</span>.strtolower(<span class="variable">$r</span>[1]);</div><div class="line">&#125;,<span class="variable">$joinStr</span>);</div></pre></td></tr></table></figure>
+<h3 id="4、说说你如何存储一个Token（令牌）的？以及Token运行的流程"><a href="#4、说说你如何存储一个Token（令牌）的？以及Token运行的流程" class="headerlink" title="4、说说你如何存储一个Token（令牌）的？以及Token运行的流程"></a>4、说说你如何存储一个Token（令牌）的？以及Token运行的流程</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">1、客户端使用用户名跟密码请求登录</div><div class="line">2、服务端收到请求，去验证用户名与密码</div><div class="line">3、验证成功后，服务端会签发一个 Token，再把这个 Token 发送给客户端</div><div class="line">4、客户端收到 Token 以后可以把它存储起来，比如放在 Cookie 里或者 Local Storage 里</div><div class="line">5、客户端每次向服务端请求资源的时候需要带着服务端签发的 Token</div><div class="line">6、服务端收到请求，然后去验证客户端请求里面带着的 Token，如果验证成功，就向客户端返回请求的数据</div></pre></td></tr></table></figure>
+<p>这里以T好inkPHP5作为例子来存储Token<br>如果这篇文章对你有帮助，请帮作者点个Star,<a href="https://github.com/InfoRoots/InfoRoots.github.io" target="_blank" rel="external">GitHub地址</a></p>
 
       
 
@@ -261,7 +174,7 @@
 		<ul class="article-tag-list">
 			 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">MySQL</a>
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">other</a>
         		</li>
       		
 		</ul>
@@ -317,7 +230,7 @@
     <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
     <p>扫一扫，分享到微信</p>
     <div class="wx-qrcode">
-      <img src="http://s.jiathis.com/qrcode.php?url=https://inforoots.github.io/2017/MySQL_Common/" alt="微信分享二维码">
+      <img src="http://s.jiathis.com/qrcode.php?url=https://inforoots.github.io/2017/Interview /" alt="微信分享二维码">
     </div>
 </div>
 
@@ -331,18 +244,9 @@
   
 <nav id="article-nav">
   
-    <a href="/2017/JS_Date/" id="article-nav-newer" class="article-nav-link-wrap">
-      <i class="icon-circle-left"></i>
-      <div class="article-nav-title">
-        
-          JS日期插件
-        
-      </div>
-    </a>
   
-  
-    <a href="/2017/PHP_XDebug/" id="article-nav-older" class="article-nav-link-wrap">
-      <div class="article-nav-title">配置PHP的Xdebug调试扩展</div>
+    <a href="/2017/ThinkPHP_Table_/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">详解Thinkphp中表关联hasOne和belongsTo的区别</div>
       <i class="icon-circle-right"></i>
     </a>
   
